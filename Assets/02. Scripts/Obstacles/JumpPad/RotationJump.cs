@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 public class RotationJump : MonoBehaviour
 {
@@ -12,11 +10,6 @@ public class RotationJump : MonoBehaviour
     private Vector3 _startRotate = new Vector3(0, 0, 0);
     private bool _checkRotate = true;
     private bool _collidertime = true;
-
-    private void Start()
-    {
-        
-    }
 
     void OnCollisionEnter(Collision collision) 
     {
@@ -31,11 +24,10 @@ public class RotationJump : MonoBehaviour
     {
         while (_checkRotate)
         {
-            Debug.Log(_rotateSpeed);
             _rotateSpeed += 0.01f;
             transform.Rotate(Vector2.right* _rotateSpeed);
             yield return null;
-            if (_stopRotate.x - transform.eulerAngles.x <= 50f)
+            if (_stopRotate.x - transform.eulerAngles.x <= 60f)
             {
                 Rigidbody otherRigidbody = collision.gameObject.GetComponent<Rigidbody>();
                 Vector3 forwardDirection = collision.transform.up; 
