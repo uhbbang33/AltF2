@@ -52,4 +52,11 @@ public class ChickenProjectile : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // 충돌처리
+
+        Destroy(gameObject);
+    }
 }
