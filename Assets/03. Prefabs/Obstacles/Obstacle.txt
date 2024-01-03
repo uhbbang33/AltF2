@@ -9,13 +9,13 @@ Distance - 시작 지점과 EndPosition 사이의 거리, 변경하면 EndPositi
 Gear - Gear Prefab
 
 @ Rotating Blades
-Blade - Blade Prefab
+Blade - Blade Prefab, 변경 사항 Editor 상태에서 확인 가능
 Blade Count - 1개, 2개, 4개 설정가능
 offset - Blade Prefab 이 중심으로 부터 멀어질 거리
 Angle - Blade Prefab 의 local - x축 회전값
 
 @ Rotating Thorny Log
-Blade - Blade Prefab
+Blade - Blade Prefab, 변경 사항 Editor 상태에서 확인 가능(?)
 Blade Count Controls - 건들지 않기!
 Blade Count - 1개, 2개, 4개 설정 가능
 Length - 통나무 길이 >> 통나무 길이에 따라서 칼날의 수가 변경됩니다.(아마)
