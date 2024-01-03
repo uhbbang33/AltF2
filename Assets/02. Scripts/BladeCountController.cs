@@ -51,7 +51,7 @@ public class BladeCountController : MonoBehaviour
     {
         for (int i = 0; i < (int)BladeCount.QUAD; ++i)
         {
-            _blades[i].transform.rotation = Quaternion.Euler(new Vector3(0, _zAngle[i], 0) + Vector3.right * _angle);
+            _blades[i].transform.localRotation = Quaternion.Euler(new Vector3(0, _zAngle[i], 0) + Vector3.right * _angle);
         }
     }
 
