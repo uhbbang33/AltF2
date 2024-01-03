@@ -16,7 +16,7 @@ public class DoorObjectInteraction : MonoBehaviour
     private Rigidbody _rigidBody;
     private GameObject _gameObject;
 
-    [SerializeField] private float angleErrorRange = 1.0f;
+   private float angleErrorRange = 1.0f;
 
     private Quaternion _objectRotation;
     private bool _isInteracting = false;
