@@ -18,8 +18,10 @@ public class BladeCountController : MonoBehaviour
     [SerializeField] private GameObject[] _blades = new GameObject[(int)BladeCount.QUAD];
 
     private Vector3[] positions = { Vector3.right, Vector3.left, Vector3.forward, Vector3.back };
+    private int[] _zAngle = { 90, -90, 0, 180 };
     private GameObject _bladePrefab;
     private float _offset;
+    private float _angle;
 
     private void Awake()
     {
@@ -28,17 +30,20 @@ public class BladeCountController : MonoBehaviour
         RotateBlades();
     }
 
-    public void OnPreview(GameObject prefab, float offset)
+    public void OnPreview(GameObject prefab, float offset, float angle)
     {
         _bladePrefab = prefab;
         _offset = offset;
+        _angle = angle;
 
         for (int i = 0; i < (int)BladeCount.QUAD; ++i)
         {
             _blades[i].GetComponent<MeshFilter>().mesh = prefab.GetComponent<MeshFilter>()?.sharedMesh;
             _blades[i].transform.localPosition = positions[i] * offset;
+            _blades[i].transform.localScale = prefab.transform.localScale;
         }
 
+        RotateBlades();
         ActiveBlades();
     }
 
@@ -46,15 +51,7 @@ public class BladeCountController : MonoBehaviour
     {
         for (int i = 0; i < (int)BladeCount.QUAD; ++i)
         {
-            if (i != 3)
-            {
-                var rot = Vector3.Cross(_blades[i].transform.forward, positions[i]);
-                _blades[i].transform.rotation = Quaternion.Euler(rot * 90);
-            }
-            else
-            {
-                _blades[i].transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            }
+            _blades[i].transform.rotation = Quaternion.Euler(new Vector3(0, _zAngle[i], 0) + Vector3.right * _angle);
         }
     }
 

@@ -11,6 +11,7 @@ public class RotatingBlade : MonoBehaviour
     public BladeCountController.BladeCount bladeCount = BladeCountController.BladeCount.ONLY;
 
     public float offset;
+    public float angle;
 
     private void Awake()
     {
@@ -33,7 +34,7 @@ public class RotatingBlade : MonoBehaviour
 
         if (Blade != null)
         {
-            bladeController.OnPreview(Blade, offset);
+            bladeController.OnPreview(Blade, offset, angle);
         }
     }
 }
