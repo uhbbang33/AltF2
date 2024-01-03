@@ -5,21 +5,6 @@ using UnityEngine;
 
 public class SwingInPlayer : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
-    private ThirdPersonController _controller;
-
-    private void Start()
-    {
-        _controller = _player.GetComponent<ThirdPersonController>();
-    }
-
-    private void Update()
-    {
-        //if(!_controller.Grounded) 
-        //{
-        //    _controller.gameObject.transform.SetParent(null);
-        //}
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
