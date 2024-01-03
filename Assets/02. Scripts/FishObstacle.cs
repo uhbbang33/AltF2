@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class FishObstacle : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class FishObstacle : MonoBehaviour
     [SerializeField] private float _flapForce = 100f;
     [SerializeField] private float _torqueForce = 300f;
     [SerializeField] private float _flapTime = 0.6f;
+
+    private IObjectPool<FishObstacle> _managedPool;
 
     private void Start()
     {
@@ -26,11 +29,13 @@ public class FishObstacle : MonoBehaviour
         _rigidbody.AddForce(randomX * _jumpForce, 1.0f * _jumpForce, randomZ * _jumpForce);
 
         StartCoroutine(Flap());
+        StartCoroutine(DestroyFish());
     }
 
     private void OnDisable()
     {
         StopCoroutine(Flap());
+        StopCoroutine(DestroyFish());
     }
 
     IEnumerator Flap()
@@ -45,4 +50,14 @@ public class FishObstacle : MonoBehaviour
         }
     }
 
+    IEnumerator DestroyFish()
+    {
+        yield return new WaitForSeconds(20f);
+        _managedPool.Release(this);
+    }
+
+    public void SetManagedPool(IObjectPool<FishObstacle> pool)
+    {
+        _managedPool = pool;
+    }
 }

@@ -16,6 +16,8 @@ public class DoorObjectInteraction : MonoBehaviour
     private Rigidbody _rigidBody;
     private GameObject _gameObject;
 
+    [SerializeField] private float angleErrorRange = 1.0f;
+
     private Quaternion _objectRotation;
     private bool _isInteracting = false;
 
@@ -31,14 +33,32 @@ public class DoorObjectInteraction : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") && Quaternion.Equals(_gameObject.transform.rotation, _objectRotation))
+        if (collision.gameObject.CompareTag("Player")) //&& Quaternion.Equals(_gameObject.transform.rotation, _objectRotation)
         {
-            Debug.Log("???");
-            //InteractDoor();
-            StartCoroutine(InteractDoor());
+            float angleDifference = Quaternion.Angle(_gameObject.transform.rotation, _objectRotation);
 
+            if (angleDifference < angleErrorRange)
+            {
+                Debug.Log("???");
+                // 여기에 문을 열기 위한 로직 추가
+                StartCoroutine(InteractDoor());
+            }
+            //InteractDoor();
+            //StartCoroutine(InteractDoor());
         }
     }
+
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player") && Quaternion.Equals(_gameObject.transform.rotation, _objectRotation))
+    //    {
+    //        Debug.Log("???");
+    //        //InteractDoor();
+    //        StartCoroutine(InteractDoor());
+
+    //    }
+    //}
 
     /// <summary>
     /// 코루틴을 이용해 문을 회전
