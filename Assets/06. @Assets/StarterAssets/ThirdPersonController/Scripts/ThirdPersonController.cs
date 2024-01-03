@@ -401,7 +401,7 @@ namespace StarterAssets
             RaycastHit hit;
             Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
                 transform.position.z);
-            isElevator = Physics.BoxCast(boxPosition, boxSize/2, Vector3.down, out hit, Quaternion.identity, boxCastDistance, LayerMask.GetMask("Elevator"), 
+            isElevator = Physics.BoxCast(boxPosition, boxSize/2, Vector3.down, out hit, Quaternion.identity, boxCastDistance, LayerMask.GetMask("Elevator", "Swing"), 
                 QueryTriggerInteraction.Ignore);
 
             if(isElevator)
@@ -413,6 +413,7 @@ namespace StarterAssets
                 transform.parent = null;
             }
         }
+
 
     }
 }
