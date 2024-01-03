@@ -6,7 +6,7 @@ public class GroundAttacher : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        transform.parent = collision.transform;
+        transform.parent = collision.transform;// (collision.transform, false);
     }
 
     private void OnCollisionExit(Collision collision)
@@ -16,6 +16,6 @@ public class GroundAttacher : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log($"Velocity {GetComponent<Rigidbody>().velocity}");
+        // Debug.Log($"Velocity {GetComponent<Rigidbody>().velocity}");
     }
 }
