@@ -1,0 +1,34 @@
+@ Rotating Gear
+Offset - Gear 가 중심으로 부터 멀어질 방향
+Gear - Gear Prefab
+
+@ Moveing Gear
+EndPosition - 왕복할 지점(오브젝트 할당만)
+Speed - 속도
+Distance - 시작 지점과 EndPosition 사이의 거리, 변경하면 EndPosition 의 위치가 시작지점으로 부터 x 축 방향으로 멀어진다.
+Gear - Gear Prefab
+
+@ Rotating Blades
+Blade - Blade Prefab
+Blade Count - 1개, 2개, 4개 설정가능
+offset - Blade Prefab 이 중심으로 부터 멀어질 거리
+Angle - Blade Prefab 의 local - x축 회전값
+
+@ Rotating Thorny Log
+Blade - Blade Prefab
+Blade Count Controls - 건들지 않기!
+Blade Count - 1개, 2개, 4개 설정 가능
+Length - 통나무 길이 >> 통나무 길이에 따라서 칼날의 수가 변경됩니다.(아마)
+
+@ Rotating Death Flag
+
+
+@ Rotating FootHold
+- 원하는 발판이 있다면 해당 발판에 Rotator 클래스를 넣으면 됩니다.
+
+@ FerrisWheel
+Rotator 의 속도 및 회전 축을 변경하면 하위 오브젝트도 그에 따라 알맞게 변경됩니다.
+
+@ Rotator (Class)
+Speed  - 속도
+Axis - 회전 축
