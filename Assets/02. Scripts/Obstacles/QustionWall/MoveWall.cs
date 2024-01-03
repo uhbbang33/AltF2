@@ -5,14 +5,9 @@ using UnityEngine;
 public class MoveWall : MonoBehaviour
 {
 
-    private Rigidbody _wallRigidbody ;
     private bool _isMoving;
     private float _speed = 3f;
 
-private void Awake()
-    {
-        _wallRigidbody=GetComponent<Rigidbody>();
-    }
     private void Start()
     {
         _isMoving = false;
@@ -26,7 +21,6 @@ private void Awake()
         {
             gameObject.transform.Translate(Vector3.back * _speed * Time.deltaTime);
         }
-        
     }
     private void OnTriggerEnter(Collider other)
     {
