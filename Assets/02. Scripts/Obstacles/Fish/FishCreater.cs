@@ -25,16 +25,16 @@ public class FishCreater : MonoBehaviour
         while (true)
         {
             FishObstacle fish = _pool.Get();
-            fish.transform.position = Vector3.up;
+            //fish.transform.position = Vector3.up;
             yield return new WaitForSeconds(_createFishTime);
         }
     }
 
     private FishObstacle CreateFish()
     {
-        FishObstacle fish = Instantiate(_fishPrefab).GetComponent<FishObstacle>();
+        FishObstacle fish = Instantiate(_fishPrefab, transform).GetComponent<FishObstacle>();
         fish.SetManagedPool(_pool);
-        fish.transform.SetParent(transform);
+        
         return fish;
     }
 
