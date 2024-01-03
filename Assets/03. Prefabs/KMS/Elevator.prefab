@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2697476375881037966}
   - component: {fileID: 5670801637893576802}
   - component: {fileID: 7264318496603682053}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   cycleTime: 3
   heightPos: 2
   direction: {x: 1, y: 0, z: 0}
+  vec: {x: 0, y: 0, z: 0}
 --- !u!54 &7264318496603682053
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿ using UnityEngine;
+﻿using System.Net.WebSockets;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -110,6 +111,10 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        private Vector3 boxSize = new Vector3(0.5f, 0.1f, 0.2f);
+        private bool isElevator;
+        private const float boxCastDistance = 0.1f;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -159,6 +164,8 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+
+            CheckElevator();
         }
 
         private void LateUpdate()
@@ -386,6 +393,24 @@ namespace StarterAssets
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+        }
+
+        private void CheckElevator()
+        {
+            RaycastHit hit;
+            Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+                transform.position.z);
+            isElevator = Physics.BoxCast(boxPosition, boxSize/2, Vector3.down, out hit, Quaternion.identity, boxCastDistance, LayerMask.GetMask("Elevator"), 
+                QueryTriggerInteraction.Ignore);
+
+            if(isElevator)
+            {
+                transform.parent = hit.transform;
+            }
+            else
+            {
+                transform.parent = null;
             }
         }
 
