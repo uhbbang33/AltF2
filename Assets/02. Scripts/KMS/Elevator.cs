@@ -65,28 +65,4 @@ public class Elevator : MonoBehaviour
             }
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            vec = transform.position;
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponentInParent<ThirdPersonController>().transform.parent = this.gameObject.transform;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponentInParent<ThirdPersonController>().transform.parent = null;
-        }
-    }
 }
