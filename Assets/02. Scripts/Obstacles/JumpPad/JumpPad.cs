@@ -12,7 +12,7 @@ public class JumpPad : MonoBehaviour
         Vector3 forwardDirection = collision.transform.up;
         if (otherRigidbody != null)
         {
-            otherRigidbody.AddForce(forwardDirection * 30, ForceMode.Impulse);
+            otherRigidbody.AddForce(forwardDirection * 10, ForceMode.Impulse);
         }
     }
 }

@@ -27,7 +27,7 @@ public class RotationJump : MonoBehaviour
             _rotateSpeed += 0.01f;
             transform.Rotate(Vector2.right* _rotateSpeed);
             yield return null;
-            if (_stopRotate.x - transform.eulerAngles.x <= 60f)
+            if (_stopRotate.x - transform.eulerAngles.x <= 50f)
             {
                 Rigidbody otherRigidbody = collision.gameObject.GetComponent<Rigidbody>();
                 Vector3 forwardDirection = collision.transform.up; 

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MoveWall : MonoBehaviour
 {
-    private Vector3 _startPosition = new Vector3(-11, 0.1f, 5);
+
     private Rigidbody _wallRigidbody ;
     private bool _isMoving;
+    private float _speed = 3f;
 
 private void Awake()
     {
@@ -16,13 +17,14 @@ private void Awake()
     {
         _isMoving = false;
         gameObject.SetActive(true);
-        transform .position = _startPosition;
+        
+        //transform .position = new Vector3(-11, 0.1f, 5);
     }
     private void Update()
     {
         if (_isMoving)
         {
-            gameObject.transform.Translate(Vector3.back * Time.deltaTime);
+            gameObject.transform.Translate(Vector3.back * _speed * Time.deltaTime);
         }
         
     }
