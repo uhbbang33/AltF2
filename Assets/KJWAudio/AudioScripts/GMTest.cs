@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class GMTest : MonoBehaviour
 {
-    private static AudioManager _instance;
-    public static AudioManager Instance
+    private static GMTest _instance;
+    public static GMTest Instance
     {
         get
-        {   
+        {
             if (_instance == null)
             {
-                GameObject go = new GameObject("GameManager");
-                go.AddComponent<AudioManager>();
-                _instance = go.GetComponent<AudioManager>();
+                GameObject go = new GameObject("GMTest");
+                go.AddComponent<GMTest>();
+                _instance = go.GetComponent<GMTest>();
                 DontDestroyOnLoad(go);
             }
             return _instance;
@@ -35,5 +35,8 @@ public class AudioManager : MonoBehaviour
             if (_instance != this) Destroy(this);
         }
     }
+
+    public AudioManager audioManager;
+
 
 }
