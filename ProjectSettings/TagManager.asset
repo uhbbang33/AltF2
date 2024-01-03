@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CinemachineTarget
   - Elevator
+  - Door
+  - Swing
   layers:
   - Default
   - TransparentFX
