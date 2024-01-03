@@ -9,7 +9,8 @@ public class FishObstacle : MonoBehaviour
 
     [SerializeField] private float _jumpForce = 400f;
     [SerializeField] private float _flapForce = 100f;
-    private float _flapTime = 0.6f;
+    [SerializeField] private float _torqueForce = 300f;
+    [SerializeField] private float _flapTime = 0.6f;
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class FishObstacle : MonoBehaviour
         while (true)
         {
             _rigidbody.AddForce(Vector3.up * _flapForce);
-            _rigidbody.AddTorque(Vector3.forward * Random.Range(-1.0f, 1.0f) * 100f);
+            _rigidbody.AddTorque(Vector3.forward * Random.Range(-1.0f, 1.0f) * _torqueForce);
 
             yield return new WaitForSeconds(_flapTime);
         }
