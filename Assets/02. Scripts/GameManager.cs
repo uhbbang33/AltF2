@@ -7,6 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
+    #region Singleton Setting 
     private static GameManager _instanace;
     public static GameManager Instance
     { 
@@ -31,14 +32,21 @@ public class GameManager : MonoBehaviour
 
     private readonly UIManager _ui = new UIManager();
     public static UIManager UI => Instance._ui;
-    [field: SerializeField] public int DeathCount { get; private set; } = 0;
-
-    private UIScore _scoreUI;
 
     private GameManager()
     {
-        
+
     }
+    #endregion
+
+    [field: SerializeField] public int DeathCount { get; private set; } = 0;
+
+    private UIScore _scoreUI;
+    public bool IsPlayerDied { get; private set; } = false;
+
+    private Transform _respawnPosition;
+
+    private Transform _startPosition;
 
     private void Awake()
     {
@@ -47,8 +55,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
-    }    
+        // OnPlayerDied();
+    }
 
     private void Update()
     {
@@ -82,5 +90,24 @@ public class GameManager : MonoBehaviour
 #else
         Application.Quit(); // 어플리케이션 종료
 #endif
+    }
+
+    private void OnPlayerDied()
+    {
+        IsPlayerDied = true;
+        ++DeathCount;
+        _ui.ShowPoppUI(EPopup.UIDeath);
+
+        Invoke("RespawnPlayer", 1.0f);
+    }
+
+    private void RespawnPlayer()
+    {
+        _ui.ClosePopupUI();
+        IsPlayerDied = false;
+
+        // var respawnPosition = respawnPosition == null ? _startPosition : _respawnPosition;
+
+        // Resources.Load<GameObject>("Player")
     }
 }
