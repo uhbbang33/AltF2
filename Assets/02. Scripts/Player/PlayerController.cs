@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float attackSpeed;
 
-
     private bool _isGrounded;
     private bool _isElevator;
     private float lastAttackTime = float.MaxValue;
@@ -215,5 +214,4 @@ public class PlayerController : MonoBehaviour
         Vector3 gizmoBoxSize = new Vector3(0.6f, 0.1f, 0.6f);
         Gizmos.DrawWireCube(boxPosition + Vector3.down * boxCastDistance, gizmoBoxSize);
     }
-
 }
