@@ -10,7 +10,7 @@ public class BaseObstacle : MonoBehaviour
         {
             // 플레이어에게 데미지
 
-            // 플레이어 래그돌
+            
         }
     }
 }

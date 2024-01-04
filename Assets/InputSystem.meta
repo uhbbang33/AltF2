@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/KJWAudio.meta
+guid: 4561b02cebb65724097e04ae4e2f0d6b
+========
 guid: 7f6cf8bd75d05734f9c80398fb7349b2
+>>>>>>>> Develop1.00:Assets/InputSystem.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
