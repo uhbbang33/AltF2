@@ -47,6 +47,7 @@ public class PlayerRagdollController : MonoBehaviour
 
     IEnumerator ReleaseRagdoll()
     {
+        //start
         yield return new WaitForSeconds(5f);
         _playerRigidbody.isKinematic = false;
         _playerCollider.enabled = true;
@@ -63,5 +64,6 @@ public class PlayerRagdollController : MonoBehaviour
 
         transform.position = tempObject.transform.position;
         _co = null;
+        //end
     }
 }
