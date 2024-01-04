@@ -30,6 +30,11 @@ public class BladeCountController : MonoBehaviour
         RotateBlades();
     }
 
+    public void SetBlade(GameObject bladePrefab)
+    {
+        _bladePrefab = bladePrefab;
+    }
+
     public void OnPreview(GameObject prefab, float offset, float angle)
     {
         _bladePrefab = prefab;
@@ -57,10 +62,13 @@ public class BladeCountController : MonoBehaviour
 
     private void CreateBlades()
     {
+        if (_bladePrefab == null) return;
+
         for(int i = 0; i < (int)BladeCount.QUAD; ++i)
         {
             _blades[i] = Instantiate(_bladePrefab, transform);
             _blades[i].transform.localPosition = positions[i] * _offset;
+            _blades[i].transform.localScale = _bladePrefab.transform.localScale;
         }
     }
 

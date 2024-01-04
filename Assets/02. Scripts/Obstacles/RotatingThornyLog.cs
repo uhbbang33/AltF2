@@ -34,7 +34,6 @@ public class RotatingThornyLog : MonoBehaviour
             {
                 bladeCountControl.count = bladeCount;
                 bladeCountControl.OnPreview(Blade, offset, angle);
-                Debug.Log($"{Math.Abs(bladeCountControl.transform.localPosition.x)} <= {length}");
                 bladeCountControl.gameObject.SetActive(Math.Abs(bladeCountControl.transform.localPosition.x) < (int)Math.Floor(length * 2)); 
             }
         }
