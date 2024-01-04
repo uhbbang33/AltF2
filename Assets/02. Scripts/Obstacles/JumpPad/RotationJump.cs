@@ -75,10 +75,10 @@ public class RotationJump : MonoBehaviour
     IEnumerator PlayerEnabledf(Collision collision) 
     {
         yield return null;
-        collision.gameObject.GetComponent<Animator>().enabled = false;
+        //collision.gameObject.GetComponent<Animator>().enabled = false;
         collision.gameObject.GetComponent<PlayerController>().enabled = false;
         yield return new WaitForSeconds(1.1f);
-        collision.gameObject.GetComponent<Animator>().enabled = true;
+        //collision.gameObject.GetComponent<Animator>().enabled = true;
         collision.gameObject.GetComponent<PlayerController>().enabled = true;
     }
 }

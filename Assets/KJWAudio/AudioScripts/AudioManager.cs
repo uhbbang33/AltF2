@@ -3,13 +3,11 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioSource BgSound;
-    public AudioClip[] Bglist;
+    public AudioSource[] SFXSound;
+
+
     //¹è°æÀ½ ¹Ù²Ü ¶§ GMTest.Instance.audioManager.
 
-    private void Start()
-    {
-        BgSoundPlay(Bglist[0]);
-    }
     public void SFXPlay(string sfxName, AudioClip clip) 
     {
         GameObject AudioGo = new GameObject( sfxName+"Sound" );
@@ -29,5 +27,7 @@ public class AudioManager : MonoBehaviour
         BgSound.Play();
     }
     //GMTest.Instance.audioManager.BgSoundPlay(AudioClip);
-    
+
+
+    //mix º¼·ý Á¶Àý
 }
