@@ -43,7 +43,7 @@ public class DoorObjectInteraction : MonoBehaviour
         {
             float angleDifference = Quaternion.Angle(_gameObject.transform.rotation, _objectRotation);
 
-            StartCoroutine(PlayerComponentControl(collision));
+            //StartCoroutine(PlayerComponentControl(collision));
 
             DoorPushForce();
 
@@ -120,16 +120,16 @@ public class DoorObjectInteraction : MonoBehaviour
     }
 
 
-    private IEnumerator PlayerComponentControl(Collision collision)
-    {
-        collision.gameObject.GetComponent<Animator>().enabled = false;
-        collision.gameObject.GetComponent<PlayerController>().enabled = false;
+    //private IEnumerator PlayerComponentControl(Collision collision)
+    //{
+    //    collision.gameObject.GetComponent<Animator>().enabled = false;
+    //    collision.gameObject.GetComponent<PlayerController>().enabled = false;
 
-        yield return new WaitForSeconds(1.1f);
+    //    yield return new WaitForSeconds(1.1f);
 
-        collision.gameObject.GetComponent<Animator>().enabled = true;
-        collision.gameObject.GetComponent<PlayerController>().enabled = true;
+    //    collision.gameObject.GetComponent<Animator>().enabled = true;
+    //    collision.gameObject.GetComponent<PlayerController>().enabled = true;
 
-    }
+    //}
 
 }
