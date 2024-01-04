@@ -7,9 +7,6 @@ public class SaveBalloon : MonoBehaviour
 {
     [Header("Speed")]
     public float speed;
-
-    [Header("DestroyedObject")]
-    public GameObject destroyedObject;
     
     private Animator _animator;
     private Rigidbody _rigidbody;
@@ -24,25 +21,17 @@ public class SaveBalloon : MonoBehaviour
     private void Start()
     {
         _rigidbody.velocity = Vector3.up * speed;
-
-        StartCoroutine(TestPop());
     }
 
-    IEnumerator TestPop()
-    {
-        yield return new WaitForSeconds(3f);
-        StartCoroutine(Pop());
-        yield return null;
-    }
-
-    IEnumerator Pop()
+    public IEnumerator Pop(GameObject gameObj)
     {
         _animator.SetTrigger("Pop");
         yield return new WaitForSeconds(1f);
-        Destroy(destroyedObject);
 
         _rigidbody.useGravity = true;
         SavePosition();
+
+        Destroy(gameObj);
     }
 
     private void SavePosition()
