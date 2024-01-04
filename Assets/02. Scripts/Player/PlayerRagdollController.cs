@@ -53,7 +53,7 @@ public class PlayerRagdollController : MonoBehaviour
 
         foreach (Rigidbody rb in _lagdollRigidbodies)
         {
-            rb.isKinematic = false;
+            rb.isKinematic = true;
         }
         foreach (Collider col in _lagdollColliders)
         {
