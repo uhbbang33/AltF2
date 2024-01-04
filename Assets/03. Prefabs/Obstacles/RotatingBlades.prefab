@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 626227795345223764}
   - component: {fileID: 7688225400819719819}
   - component: {fileID: 3329957165738779236}
+  - component: {fileID: 7726543866318540685}
   m_Layer: 0
   m_Name: Dumy
   m_TagString: Untagged
@@ -105,6 +106,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7726543866318540685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554876508122798820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6b07ccebecc864699c9112f86fe4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2935679870542545584
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +130,7 @@ GameObject:
   - component: {fileID: 5006880047712987517}
   - component: {fileID: 3770329598803105860}
   - component: {fileID: 7134468717856064483}
+  - component: {fileID: 4751368895857483970}
   m_Layer: 0
   m_Name: Dumy
   m_TagString: Untagged
@@ -210,6 +224,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4751368895857483970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935679870542545584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6b07ccebecc864699c9112f86fe4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4208197673061304458
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +248,7 @@ GameObject:
   - component: {fileID: 2692209088752786527}
   - component: {fileID: 7899264129780935688}
   - component: {fileID: 8836094533080855750}
+  - component: {fileID: 4104718905639376959}
   m_Layer: 0
   m_Name: Dumy
   m_TagString: Untagged
@@ -315,6 +342,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4104718905639376959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4208197673061304458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6b07ccebecc864699c9112f86fe4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4823563358944771812
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +471,7 @@ GameObject:
   - component: {fileID: 2617190413644601679}
   - component: {fileID: 8799542975207560952}
   - component: {fileID: 8279369183866013466}
+  - component: {fileID: 1349441744657541781}
   m_Layer: 0
   m_Name: Dumy
   m_TagString: Untagged
@@ -525,6 +565,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1349441744657541781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146037348314947860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6b07ccebecc864699c9112f86fe4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5538883544628331694
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +678,7 @@ Transform:
   - {fileID: 6830258179441211597}
   - {fileID: 8510464169425268336}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4833317734779856054
 MonoBehaviour:

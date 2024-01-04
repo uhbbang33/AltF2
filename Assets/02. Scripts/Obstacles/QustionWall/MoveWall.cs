@@ -6,6 +6,7 @@ public class MoveWall : MonoBehaviour
 {
 
     private bool _isMoving;
+    [SerializeField]
     private float _speed = 3f;
 
     private void Start()

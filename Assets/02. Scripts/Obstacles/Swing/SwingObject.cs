@@ -13,16 +13,8 @@ public class SwingObject : MonoBehaviour
         // swing
         float angle =  Mathf.Sin(Time.time * swingSpeed) * swingAngle;
 
-        //Debug.Log(angle);
-
-        //float posAngle = _originalRotation + Mathf.Sin(Time.time * swingSpeed) * swingPosAngle;
-
-        //float posZ = posAngle * _amplitude;
-
         // 판자 rotation값 변화
         transform.rotation = Quaternion.Euler(angle, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
-        // 판자 postion값 변화
-        //transform.position = new Vector3(transform.position.x, transform.position.y, posZ);
 
     }
 }

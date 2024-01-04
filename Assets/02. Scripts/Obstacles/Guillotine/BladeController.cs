@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BladeController : MonoBehaviour
+public class BladeController : BaseObstacle
 {
 
     [Header("Routine Speed")]
@@ -18,6 +18,8 @@ public class BladeController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        base.OnCollisionEnter(collision);
+
         if (!_dropBlade)
         {
             return;

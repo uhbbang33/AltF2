@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PendulumObstacle : MonoBehaviour
+public class PendulumObstacle : BounceObstacle
 {
     [SerializeField] private float angle = 60;
     [SerializeField] private float speed = 2f;
@@ -11,8 +11,6 @@ public class PendulumObstacle : MonoBehaviour
 
     private void Update()
     {
-        //float t = Mathf.PingPong(Time.time * speed, 1.0f);
-        // rigidbody addforce?
         moveTime += Time.deltaTime * speed;
 
         Quaternion currentRotation = transform.rotation;
@@ -20,6 +18,5 @@ public class PendulumObstacle : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, targetZRotation);
 
         transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, 0.5f);
-
     }
 }
