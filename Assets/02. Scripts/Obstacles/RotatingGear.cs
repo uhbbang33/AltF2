@@ -21,7 +21,7 @@ public class RotatingGear : MonoBehaviour
     {
         if (Gear != null)
         {
-            Gear.transform.position = transform.position + Arm.offset;
+            Gear.transform.localPosition = Arm.offset;
         }
     }
 }
