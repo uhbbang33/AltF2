@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class FishObstacle : MonoBehaviour
+public class FishObstacle : BaseObstacle
 {
     private Rigidbody _rigidbody;
 
@@ -59,5 +59,10 @@ public class FishObstacle : MonoBehaviour
     public void SetManagedPool(IObjectPool<FishObstacle> pool)
     {
         _managedPool = pool;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        base.OnCollisionEnter(collision);
     }
 }

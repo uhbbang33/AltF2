@@ -7,6 +7,8 @@ public class ChickenProjectile : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float offsetAngle;
 
     private const float waitTime = 0.1f;
     private const float destroyDelayTime = 3f;
@@ -27,6 +29,7 @@ public class ChickenProjectile : MonoBehaviour
     IEnumerator Fire()
     {
         var dir = GetCamDir();
+        dir.y += offsetAngle;
         yield return new WaitForSeconds(waitTime);
         Rotate(dir);
         _rigidbody.velocity = dir * speed;
