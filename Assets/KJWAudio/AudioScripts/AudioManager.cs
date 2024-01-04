@@ -29,5 +29,5 @@ public class AudioManager : MonoBehaviour
         BgSound.Play();
     }
     //GMTest.Instance.audioManager.BgSoundPlay(AudioClip);
-
+    
 }

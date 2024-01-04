@@ -6,10 +6,9 @@ using UnityEngine;
 public class RotationJump : MonoBehaviour
 {
     [SerializeField]
-    private float _jumpforce = 30f;
+    private float _jumpforce = 40f;
     private float _rotateSpeed = 0.5f;
-    private Vector3 _stopRotate = new Vector3(60, 0, 0);
-    private Vector3 _startRotate = new Vector3(0, 0, 0);
+    private Vector3 _stopRotate = new Vector3(70, 0, 0);
     private bool _checkRotate = true;
     private bool _collidertime = true;
     private bool _onPad = false;
@@ -30,9 +29,8 @@ public class RotationJump : MonoBehaviour
 
     IEnumerator RotatePad(Collision collision)
     {
-        PlayerJump(collision, Vector3.left);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         while (_checkRotate)
         {
             _rotateSpeed += 0.01f;
@@ -43,16 +41,16 @@ public class RotationJump : MonoBehaviour
 
                 Vector3 forwardDirection = transform.up;
                 
-                //Rigidbody Addforce 에서 다른 방법으로 변경 (y는 힘을 받는데 z 힘을 못받음)
+                //Rigidbody Addforce  (y는 힘을 받는데 z 힘을 못받음)
                 Rigidbody otherRigidbody = collision.gameObject.GetComponent<Rigidbody>();
                 if (otherRigidbody != null&& _onPad)
                 {
-                    //StartCoroutine(PlayerJump(collision, forwardDirection));
+                    StartCoroutine(PlayerEnabledf(collision)); // 임시
                     Debug.Log("addforce 방향 : " + forwardDirection * _jumpforce);
                     otherRigidbody.AddForce(forwardDirection * _jumpforce, ForceMode.Impulse);
                 }
 
-                transform.rotation = Quaternion.Euler(_stopRotate);
+                
                 _checkRotate = false;
             }
         }
@@ -64,9 +62,8 @@ public class RotationJump : MonoBehaviour
             transform.Rotate(Vector2.left);
             yield return null;
 
-            if (transform.eulerAngles.x - _startRotate.x <= 1.1f)
+            if (transform.eulerAngles.x <= 1.1f)
             {
-                transform.rotation = Quaternion.Euler(_startRotate);
                 _checkRotate = true;
             }
         }
@@ -74,25 +71,14 @@ public class RotationJump : MonoBehaviour
         _rotateSpeed = 1f;
     }
 
-    //억지로 밀기 다른 방법 생각 해보기.
-    IEnumerator PlayerJump(Collision collision, Vector3 forwardDirection)
+    //나중에 고치기
+    IEnumerator PlayerEnabledf(Collision collision) 
     {
-        float time = 0;
-        Debug.Log(time);
-
-        while (time < 0.7f)
-        {
-            time += Time.deltaTime;
-            collision.gameObject.transform.position += forwardDirection;
-            yield return null;
-            if (forwardDirection.y >0.01f && forwardDirection.z > 0.01f)
-            {
-                forwardDirection -= new Vector3(0,0.01f,0.01f);
-                Debug.Log(forwardDirection);
-            }
-
-        }
-        time = 0;
+        yield return null;
+        collision.gameObject.GetComponent<Animator>().enabled = false;
+        collision.gameObject.GetComponent<PlayerController>().enabled = false;
+        yield return new WaitForSeconds(1.1f);
+        collision.gameObject.GetComponent<Animator>().enabled = true;
+        collision.gameObject.GetComponent<PlayerController>().enabled = true;
     }
-
 }
