@@ -10,15 +10,13 @@ public class SavePoint : MonoBehaviour
 
     private Vector3 _savePoint = Vector3.zero;  // 저장위치 설정.
 
-    private Animator _animator;
-
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();   
-    }
     private void Start()
     {
-        SceneManager.sceneLoaded += LoadedsceneEvent;
+        Scene scene = SceneManager.GetActiveScene();
+        sceneCheck(scene);
+        _savePoint = _startPoint;
+
+        //SceneManager.sceneLoaded += LoadedsceneEvent;
     }
 
     private void Update()
@@ -29,14 +27,15 @@ public class SavePoint : MonoBehaviour
         }
     }
 
-    private void LoadedsceneEvent(Scene scene, LoadSceneMode arg1)
+    /*private void LoadedsceneEvent(Scene scene, LoadSceneMode arg1)
     {
+        _player = GameObject.FindGameObjectWithTag("Player");
         sceneCheck(scene);
-    }
+        _savePoint = _startPoint;
+    }*/
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(_savePoint);
         if (collision.gameObject.tag == "SaveBoard")
         {
             _savePoint = collision.transform.position + Vector3.up;
@@ -48,11 +47,9 @@ public class SavePoint : MonoBehaviour
     IEnumerator ReStartCo()
     {
         //피이펙트
-        _animator.enabled = false;
         yield return new WaitForSeconds(1f);
         gameObject.transform.position = _savePoint;
         _savePoint = _startPoint;
-        _animator.enabled = true;
     }
 
     private void sceneCheck(Scene scene) 
@@ -60,7 +57,8 @@ public class SavePoint : MonoBehaviour
         if (scene.name == "KJW")
         {
             _startPoint = _firstStartPoint;
-        }else if (scene.name == "99.BJH")
+        }
+        else if (scene.name == "99.BJH")
         {
             _startPoint = _SecondStartPoint;
         }
