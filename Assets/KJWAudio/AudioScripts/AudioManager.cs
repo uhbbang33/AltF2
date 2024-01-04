@@ -26,8 +26,9 @@ public class AudioManager : MonoBehaviour
         BgSound.volume = 0.1f;
         BgSound.Play();
     }
+
     //GMTest.Instance.audioManager.BgSoundPlay(AudioClip);
 
-
     //mix º¼·ý Á¶Àý
+
 }
