@@ -16,15 +16,16 @@ public class BounceObstacle : BaseObstacle
             Vector3 reflectDirection = Vector3.Reflect(collisionDirection, collision.contacts[0].normal).normalized;
             if (reflectDirection.y < 0)
                 reflectDirection = new Vector3(reflectDirection.x, -reflectDirection.y, reflectDirection.z);
+            reflectDirection.y /= 100;
 
             Rigidbody playerRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             //collision.gameObject.GetComponent<Animator>().enabled = false;
             //collision.gameObject.GetComponent<PlayerController>().enabled = false;
-            playerRigidbody.AddForce(reflectDirection * _bounceForce);
+            playerRigidbody.AddForce(reflectDirection * _bounceForce, ForceMode.VelocityChange);
 
 
             // player lagdoll
-            collision.gameObject.GetComponent<PlayerRagdollController>().SetRagdollState(true);
+            //collision.gameObject.GetComponent<PlayerRagdollController>().SetRagdollState(true);
 
             //Debug.Log(reflectDirection * _bounceForce);
         }

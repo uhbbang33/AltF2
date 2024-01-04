@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour
     private bool _isElevator;
     private float lastAttackTime = float.MaxValue;
     private Vector3 boxSize = new Vector3(0.6f, 0.1f, 0.6f);
-    private const float GroundedOffset = -0.1f;
-    private const float boxCastDistance = 0.15f;
+    private const float GroundedOffset = -0.17f;
+    private const float boxCastDistance = 0.2f;
     private bool _isAttack;
     private bool _isRun;
 
@@ -66,12 +66,14 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 dir = GetMoveDir();
+        if (dir == Vector3.zero) return;
         Rotate(dir);
         var movementSpeed = _isRun ? runSpeed : moveSpeed;
         dir = dir * movementSpeed;
-        dir.y = _rigidbody.velocity.y;
-        if (IsGrounded()) dir.y = 0f;
-        _rigidbody.velocity = dir;
+        //dir.y = _rigidbody.velocity.y;
+        //_rigidbody.velocity = dir;
+        _rigidbody.AddForce(dir);
+
     }
 
     private void Attack()
@@ -97,6 +99,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 GetMoveDir()
     {
+        if(_moveInput == Vector2.zero) return Vector3.zero;
+
         var fowardDir = _mainCameraTransform.forward;
         var rightDir = _mainCameraTransform.right;
 
@@ -117,6 +121,7 @@ public class PlayerController : MonoBehaviour
         fowardDir.Normalize();
         return fowardDir;
     }
+
     #region InputAction
     public void OnMoveInput(InputAction.CallbackContext context)
     {

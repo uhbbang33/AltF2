@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    private float _jumpforce = 30f;
+    [SerializeField]
+    private float _jumpforce = 40f;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -12,7 +13,9 @@ public class JumpPad : MonoBehaviour
         Vector3 forwardDirection = collision.transform.up;
         if (otherRigidbody != null)
         {
-            otherRigidbody.AddForce(forwardDirection * 10, ForceMode.Impulse);
+            otherRigidbody.AddForce(forwardDirection * _jumpforce, ForceMode.Impulse);
         }
+        
     }
+    
 }
