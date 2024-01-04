@@ -406,6 +406,7 @@ namespace StarterAssets
 
             if(isElevator)
             {
+                Debug.Log(transform.parent.name);
                 transform.parent = hit.transform;
             }
             else

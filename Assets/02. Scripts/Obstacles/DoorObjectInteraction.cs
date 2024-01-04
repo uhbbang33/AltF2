@@ -13,6 +13,12 @@ public class DoorObjectInteraction : MonoBehaviour
     [Header("- time")]
     [SerializeField] private float waitTime;
 
+    [Header("- speed")]
+    [SerializeField] private float duration;  // 회전에 걸리는 시간
+
+    [Header("- force")]
+    [SerializeField] private float addForce;
+
     private Rigidbody _rigidBody;
     private GameObject _gameObject;
 
@@ -37,6 +43,10 @@ public class DoorObjectInteraction : MonoBehaviour
         {
             float angleDifference = Quaternion.Angle(_gameObject.transform.rotation, _objectRotation);
 
+            StartCoroutine(PlayerComponentControl(collision));
+
+            DoorPushForce();
+
             if (angleDifference < angleErrorRange)
             {
                 Debug.Log("???");
@@ -49,17 +59,6 @@ public class DoorObjectInteraction : MonoBehaviour
     }
 
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player") && Quaternion.Equals(_gameObject.transform.rotation, _objectRotation))
-    //    {
-    //        Debug.Log("???");
-    //        //InteractDoor();
-    //        StartCoroutine(InteractDoor());
-
-    //    }
-    //}
-
     /// <summary>
     /// 코루틴을 이용해 문을 회전
     /// </summary>
@@ -70,11 +69,12 @@ public class DoorObjectInteraction : MonoBehaviour
 
         Quaternion currentRotation = _gameObject.transform.rotation; // 오브젝트의 현재 rotaion값
         
-        Quaternion targetRotation = Quaternion.Euler(currentRotation.eulerAngles + new Vector3(rotX, -rotY, rotZ)); // 내가 원하는 rotation값
+        Quaternion targetRotation = Quaternion.Euler(currentRotation.eulerAngles + new Vector3(rotX, rotY, rotZ)); // 내가 원하는 rotation값
 
         float elapsedTime = 0f;
-        float duration = 0.3f; // 회전에 걸리는 시간
 
+        
+        
         // 회전 시간
         while (elapsedTime < duration)
         {
@@ -83,14 +83,14 @@ public class DoorObjectInteraction : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
         _gameObject.transform.rotation = targetRotation;
+
 
         /// 2초간 대기
         yield return new WaitForSeconds(waitTime);  
 
         // 역회전
-        Quaternion reverseRotation = Quaternion.Euler(targetRotation.eulerAngles + new Vector3(rotX, rotY, rotZ));
+        Quaternion reverseRotation = Quaternion.Euler(targetRotation.eulerAngles + new Vector3(rotX, -rotY, rotZ));
         elapsedTime = 0f;
 
         // 역회전 시간
@@ -103,6 +103,33 @@ public class DoorObjectInteraction : MonoBehaviour
 
         _gameObject.transform.rotation = _objectRotation;  // 초기 위치로 돌아옴
         _isInteracting = false;  // 상호작용 종료
+    }
+
+
+    private void DoorPushForce()
+    {
+        float zValue = 20f;
+
+        Vector3 forceDirection = _gameObject.transform.forward;
+        forceDirection.x = 0;
+        forceDirection.z = zValue;
+
+        _rigidBody.AddForce(forceDirection.normalized * addForce, ForceMode.Impulse);
+        Debug.Log(forceDirection.normalized * addForce);
+
+    }
+
+
+    private IEnumerator PlayerComponentControl(Collision collision)
+    {
+        collision.gameObject.GetComponent<Animator>().enabled = false;
+        collision.gameObject.GetComponent<PlayerController>().enabled = false;
+
+        yield return new WaitForSeconds(1.1f);
+
+        collision.gameObject.GetComponent<Animator>().enabled = true;
+        collision.gameObject.GetComponent<PlayerController>().enabled = true;
+
     }
 
 }

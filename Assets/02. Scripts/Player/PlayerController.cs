@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset ,
             transform.position.z);
-        _isElevator = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, out hit, Quaternion.identity, boxCastDistance, LayerMask.GetMask("Elevator"),
+        _isElevator = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, out hit, Quaternion.identity, boxCastDistance, LayerMask.GetMask("Elevator", "Swing"),
             QueryTriggerInteraction.Ignore);
 
         if (_isElevator)
