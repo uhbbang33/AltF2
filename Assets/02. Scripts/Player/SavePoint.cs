@@ -1,9 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class SavePoint : MonoBehaviour

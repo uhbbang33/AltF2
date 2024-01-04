@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class RotationJump : BounceObstacle
+public class RotationJump : BaseObstacle
 {
     [SerializeField]
     private float _jumpforce = 40f;
@@ -15,8 +15,6 @@ public class RotationJump : BounceObstacle
 
     void OnCollisionEnter(Collision collision)
     {
-        base.OnCollisionEnter(collision);
-
         if (collision.gameObject.tag == "Player" && _checkRotate && _collidertime)
         {
             StartCoroutine(RotatePad(collision));
@@ -50,6 +48,7 @@ public class RotationJump : BounceObstacle
                     //StartCoroutine(PlayerEnabledf(collision)); // 임시
                     Debug.Log("addforce 방향 : " + forwardDirection * _jumpforce);
                     otherRigidbody.AddForce(forwardDirection * _jumpforce, ForceMode.Impulse);
+                    base.OnCollisionEnter(collision);
                 }
 
                 
