@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6274761150792154035}
   - component: {fileID: 6217752554746335315}
   - component: {fileID: 2921856809629265412}
+  - component: {fileID: 7600950556487700198}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb0bdf37c30ac8409010fc81b024c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _jumpforce: 40
 --- !u!65 &6217752554746335315
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76,7 +78,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3157487321673198714}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -95,6 +97,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!136 &7600950556487700198
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157487321673198714}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.97
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 1, y: 0, z: -1}
 --- !u!1 &4627007979853486590
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,5 +233,5 @@ Transform:
   m_Children:
   - {fileID: 6665569893916633853}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
