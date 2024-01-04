@@ -8,9 +8,13 @@ public class BaseObstacle : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // 플레이어에게 데미지
+            // player damage
 
-            
+
+            // player lagdoll
+            collision.gameObject.GetComponent<PlayerRagdollController>().SetRagdollState(true);
+
+            Debug.Log(collision.gameObject.name);
         }
     }
 }

@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class RotationJump : MonoBehaviour
+public class RotationJump : BounceObstacle
 {
     [SerializeField]
     private float _jumpforce = 40f;
@@ -15,6 +15,8 @@ public class RotationJump : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        base.OnCollisionEnter(collision);
+
         if (collision.gameObject.tag == "Player" && _checkRotate && _collidertime)
         {
             StartCoroutine(RotatePad(collision));
