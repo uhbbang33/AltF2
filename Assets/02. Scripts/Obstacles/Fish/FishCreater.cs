@@ -25,7 +25,7 @@ public class FishCreater : MonoBehaviour
         while (true)
         {
             FishObstacle fish = _pool.Get();
-            //fish.transform.position = Vector3.up;
+            fish.transform.position = transform.position;
             yield return new WaitForSeconds(_createFishTime);
         }
     }

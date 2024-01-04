@@ -8,3 +8,9 @@ public enum EPopup
     UISetting,
     UIDeath,
 }
+
+public enum PlayerInputState
+{
+    Locked,
+    UnLocked,
+}

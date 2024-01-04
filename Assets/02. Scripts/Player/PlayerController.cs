@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float attackSpeed;
 
+    [HideInInspector]
+    public PlayerInputState inputState;
+
+
     private bool _isGrounded;
     private bool _isElevator;
     private float lastAttackTime = float.MaxValue;
@@ -53,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        inputState = PlayerInputState.UnLocked;
     }
 
     private void FixedUpdate()
@@ -60,6 +65,7 @@ public class PlayerController : MonoBehaviour
         Move();
         Attack();
         CheckElevator();
+        CheckAirAndGroundAnimation();
     }
 
     private void Move()
@@ -93,7 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         if (dir == Vector3.zero) return;
         Quaternion rotation = Quaternion.LookRotation(dir);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed);
     }
 
     private Vector3 GetMoveDir()
@@ -124,6 +130,7 @@ public class PlayerController : MonoBehaviour
     #region InputAction
     public void OnMoveInput(InputAction.CallbackContext context)
     {
+        if (inputState == PlayerInputState.Locked) return;
         if(context.phase == InputActionPhase.Performed)
         {
             _moveInput = context.ReadValue<Vector2>();
@@ -138,10 +145,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started)
+        if (inputState == PlayerInputState.Locked) return;
+        if (context.phase == InputActionPhase.Started)
         {
             if (IsGrounded())
             {
+                _animator.SetTrigger("Jump");
                 _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
         }
@@ -149,7 +158,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttackInput(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started)
+        if (inputState == PlayerInputState.Locked) return;
+        if (context.phase == InputActionPhase.Started)
         {
             _isAttack = true;
         }
@@ -161,7 +171,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnRunInput(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started)
+        if (inputState == PlayerInputState.Locked) return;
+        if (context.phase == InputActionPhase.Started)
         {
             _isRun = true;
         }
@@ -200,6 +211,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void CheckAirAndGroundAnimation()
+    {
+        bool isGrounded = IsGrounded();
+        _animator.SetBool("Air", !isGrounded);
+        _animator.SetBool("Grounded", isGrounded);
+    }
+
     // test
     private void OnDrawGizmos()
     {
@@ -214,4 +232,5 @@ public class PlayerController : MonoBehaviour
         Vector3 gizmoBoxSize = new Vector3(0.6f, 0.1f, 0.6f);
         Gizmos.DrawWireCube(boxPosition + Vector3.down * boxCastDistance, gizmoBoxSize);
     }
+
 }

@@ -45,7 +45,7 @@ public class DoorObjectInteraction : BounceObstacle
         {
             float angleDifference = Quaternion.Angle(_gameObject.transform.rotation, _objectRotation);
 
-            StartCoroutine(PlayerComponentControl(collision));
+            //StartCoroutine(PlayerComponentControl(collision));
 
             DoorPushForce();
 
@@ -110,7 +110,7 @@ public class DoorObjectInteraction : BounceObstacle
 
     private void DoorPushForce()
     {
-        float zValue = 20f;
+        float zValue = 1f;
 
         Vector3 forceDirection = _gameObject.transform.forward;
         forceDirection.x = 0;
@@ -122,16 +122,16 @@ public class DoorObjectInteraction : BounceObstacle
     }
 
 
-    private IEnumerator PlayerComponentControl(Collision collision)
-    {
-        collision.gameObject.GetComponent<Animator>().enabled = false;
-        collision.gameObject.GetComponent<PlayerController>().enabled = false;
+    //private IEnumerator PlayerComponentControl(Collision collision)
+    //{
+    //    collision.gameObject.GetComponent<Animator>().enabled = false;
+    //    collision.gameObject.GetComponent<PlayerController>().enabled = false;
 
-        yield return new WaitForSeconds(1.1f);
+    //    yield return new WaitForSeconds(1.1f);
 
-        collision.gameObject.GetComponent<Animator>().enabled = true;
-        collision.gameObject.GetComponent<PlayerController>().enabled = true;
+    //    collision.gameObject.GetComponent<Animator>().enabled = true;
+    //    collision.gameObject.GetComponent<PlayerController>().enabled = true;
 
-    }
+    //}
 
 }

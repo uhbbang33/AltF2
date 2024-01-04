@@ -7,6 +7,7 @@ public class PlayerRagdollController : MonoBehaviour
     private Rigidbody _playerRigidbody;
     //private Collider _playerCollider;
     private Animator _animator;
+    private PlayerController _playerController;
 
     [SerializeField] private Rigidbody[] _lagdollRigidbodies;
     [SerializeField] private Collider[] _lagdollColliders;
@@ -18,6 +19,7 @@ public class PlayerRagdollController : MonoBehaviour
         _playerRigidbody = GetComponent<Rigidbody>();
         //_playerCollider = GetComponent<Collider>();
         _animator = GetComponent<Animator>();
+        _playerController = GetComponent<PlayerController>();
 
         SetRagdollState(false);
     }
@@ -45,7 +47,8 @@ public class PlayerRagdollController : MonoBehaviour
 
     IEnumerator ReleaseRagdoll()
     {
-        //start
+        _playerController.inputState = PlayerInputState.Locked;
+
         yield return new WaitForSeconds(5f);
         //_playerRigidbody.isKinematic = false;
         //_playerCollider.enabled = true;
@@ -62,6 +65,7 @@ public class PlayerRagdollController : MonoBehaviour
 
         
         _co = null;
-        //end
+
+        _playerController.inputState = PlayerInputState.UnLocked;
     }
 }
