@@ -125,8 +125,8 @@ Material:
     - sin_freq: 9.72
     m_Colors:
     - Color_07d66dbf459a427290c7b0403283d67f: {r: 1, g: 1, b: 1, a: 1}
-    - Deep: {r: 0.2805714, g: 0.43857357, b: 0.6132076, a: 1}
-    - Shallow: {r: 0.3326362, g: 0.5654507, b: 0.6132076, a: 1}
+    - Deep: {r: 0.0529103, g: 0.21190177, b: 0.38679248, a: 1}
+    - Shallow: {r: 0, g: 0.4776022, b: 0.5754717, a: 1}
     - Vector3_a51b31a925e44bd791d49ff6a2a52c60: {r: 0, g: 0, b: 0, a: 0}
     - Vector3_a51b31a925e44bd791d49ff6a2a52c60_1: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
