@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotatingGear : MonoBehaviour
+public class RotatingGear : BaseObstacle
 {
     [field : SerializeField] public Arm Arm { get; private set; }
 
@@ -23,5 +23,10 @@ public class RotatingGear : MonoBehaviour
         {
             Gear.transform.position = transform.position + Arm.offset;
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        base.OnCollisionEnter(collision);   
     }
 }

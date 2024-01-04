@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class DoorObjectInteraction : MonoBehaviour
+public class DoorObjectInteraction : BounceObstacle
 {
     [Header("- Rot")]
     [SerializeField] private float rotX;
@@ -39,6 +39,8 @@ public class DoorObjectInteraction : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        base.OnCollisionEnter(collision);
+
         if (collision.gameObject.CompareTag("Player")) //&& Quaternion.Equals(_gameObject.transform.rotation, _objectRotation)
         {
             float angleDifference = Quaternion.Angle(_gameObject.transform.rotation, _objectRotation);

@@ -5,29 +5,29 @@ using UnityEngine;
 public class PlayerRagdollController : MonoBehaviour
 {
     private Rigidbody _playerRigidbody;
-    private Collider _playerCollider;
+    //private Collider _playerCollider;
     private Animator _animator;
+    private PlayerController _playerController;
 
     [SerializeField] private Rigidbody[] _lagdollRigidbodies;
     [SerializeField] private Collider[] _lagdollColliders;
 
     Coroutine _co;
 
-    public GameObject tempObject;
-
     private void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
-        _playerCollider = GetComponent<Collider>();
+        //_playerCollider = GetComponent<Collider>();
         _animator = GetComponent<Animator>();
+        _playerController = GetComponent<PlayerController>();
 
         SetRagdollState(false);
     }
 
     public void SetRagdollState(bool state)
     {
-        _playerRigidbody.isKinematic = state;
-        _playerCollider.enabled = !state;
+        //_playerRigidbody.isKinematic = state;
+        //_playerCollider.enabled = !state;
         _animator.enabled = !state;
 
         foreach(Rigidbody rb in _lagdollRigidbodies)
@@ -47,23 +47,25 @@ public class PlayerRagdollController : MonoBehaviour
 
     IEnumerator ReleaseRagdoll()
     {
-        //start
+        _playerController.inputState = PlayerInputState.Locked;
+
         yield return new WaitForSeconds(5f);
-        _playerRigidbody.isKinematic = false;
-        _playerCollider.enabled = true;
+        //_playerRigidbody.isKinematic = false;
+        //_playerCollider.enabled = true;
         _animator.enabled = true;
 
         foreach (Rigidbody rb in _lagdollRigidbodies)
         {
-            rb.isKinematic = false;
+            rb.isKinematic = true;
         }
         foreach (Collider col in _lagdollColliders)
         {
             col.enabled = false;
         }
 
-        transform.position = tempObject.transform.position;
+        
         _co = null;
-        //end
+
+        _playerController.inputState = PlayerInputState.UnLocked;
     }
 }

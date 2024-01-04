@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5161410303673013084}
   - component: {fileID: 2508176651770508724}
   - component: {fileID: 4896530048174820240}
+  - component: {fileID: 7501088113912465357}
   m_Layer: 0
   m_Name: RotatingGear
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 1378749876356014024}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2508176651770508724
 MonoBehaviour:
@@ -64,6 +65,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.2
   axis: 2
+--- !u!65 &7501088113912465357
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6308803357391694296}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.3, y: 2.3, z: 0.28532696}
+  m_Center: {x: 1, y: 0, z: 0}
 --- !u!1001 &370959213752453280
 PrefabInstance:
   m_ObjectHideFlags: 0

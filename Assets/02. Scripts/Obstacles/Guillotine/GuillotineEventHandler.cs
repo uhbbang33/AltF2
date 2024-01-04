@@ -1,12 +1,17 @@
 using UnityEngine;
 
-public class GuillotineEventHandler : MonoBehaviour
+public class GuillotineEventHandler : BaseObstacle
 {
     public float Delay;
     public GameObject guillotineBlade;
 
     [HideInInspector]
     public bool _triggerInPlayer { get; private set; }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        base.OnCollisionEnter(collision);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
