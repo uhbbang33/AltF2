@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 8421387946071658555}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8620400454835342192
 Rigidbody:
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8458a16ba177be44bb2ada0ac7b59229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 500
+  _jumpForce: 700
   _flapForce: 80
   _torqueForce: 200
   _flapTime: 0.4

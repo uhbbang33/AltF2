@@ -110,7 +110,7 @@ public class DoorObjectInteraction : BounceObstacle
 
     private void DoorPushForce()
     {
-        float zValue = 20f;
+        float zValue = 1f;
 
         Vector3 forceDirection = _gameObject.transform.forward;
         forceDirection.x = 0;

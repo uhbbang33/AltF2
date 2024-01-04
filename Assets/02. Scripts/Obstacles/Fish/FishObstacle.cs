@@ -12,6 +12,7 @@ public class FishObstacle : BaseObstacle
     [SerializeField] private float _flapForce = 100f;
     [SerializeField] private float _torqueForce = 300f;
     [SerializeField] private float _flapTime = 0.6f;
+    [SerializeField] private float _destroyFishTime = 5.0f;
 
     private IObjectPool<FishObstacle> _managedPool;
 
@@ -52,7 +53,7 @@ public class FishObstacle : BaseObstacle
 
     IEnumerator DestroyFish()
     {
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(_destroyFishTime);
         _managedPool.Release(this);
     }
 
