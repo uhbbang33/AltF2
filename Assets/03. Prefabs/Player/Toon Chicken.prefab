@@ -416,6 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  offsetAngle: 0.03
 --- !u!1 &1325880688823160
 GameObject:
   m_ObjectHideFlags: 0
