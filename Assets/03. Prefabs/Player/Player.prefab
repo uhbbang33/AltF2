@@ -557,7 +557,7 @@ Transform:
   - {fileID: 5486698777453254090}
   - {fileID: 479263455420453540}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4092482508604092361
 Animator:
@@ -750,6 +750,7 @@ MonoBehaviour:
     type: 3}
   chickenSpaawnPos: {fileID: 3515063030061675337}
   attackSpeed: 0.666
+  inputState: 0
 --- !u!114 &7664362134001907948
 MonoBehaviour:
   m_ObjectHideFlags: 0
