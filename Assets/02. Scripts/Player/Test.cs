@@ -11,5 +11,10 @@ public class Test : MonoBehaviour
         {
             SceneManager.LoadScene("99.BJH");
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadScene("KDH_Obstacle");
+        }
+        
     }
 }
