@@ -56,7 +56,6 @@ public class SavePoint : MonoBehaviour
         {
             if (_hit.transform.CompareTag("SaveBoard"))
             {
-                Debug.Log("세이브보드");
                 _savePoint = _hit.transform.position + Vector3.up;
                 //세이브 이펙트
                 Destroy(_hit.collider.gameObject, 1f);

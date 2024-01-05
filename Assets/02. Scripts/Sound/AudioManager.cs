@@ -1,17 +1,12 @@
-using System.Xml.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     private AudioClip _audioClip;
     public AudioSource BgSound;
-    public AudioSource[] SFXSound;
     public AudioMixer Mixer;
     private string _bgFilename;
 
@@ -63,7 +58,6 @@ public class AudioManager : MonoBehaviour
         
     }
 
-
     public void BgSoundPlay(string BgName, float audioVolume)
     {
         _audioClip = Resources.Load<AudioClip>("Audios/BGM/"+ BgName);
@@ -74,8 +68,6 @@ public class AudioManager : MonoBehaviour
         BgSound.Play();
     }
 
-
-    
     //º¼·ýÁ¶Àý
     public void BGSoundVolume() 
     {
