@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
     private void OnPlayerDied()
     {
         ++DeathCount;
+        IsPlayerDied = true;
         _ui.ShowPoppUI(EPopup.UIDeath);
     }
 }

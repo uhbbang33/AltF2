@@ -13,6 +13,8 @@ public class UIGameScene : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.IsPlayerDied) return;
+
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(Time.timeScale == 0)
