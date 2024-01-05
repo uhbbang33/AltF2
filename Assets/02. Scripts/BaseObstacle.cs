@@ -10,12 +10,13 @@ public class BaseObstacle : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // player damage
-            if(_hitCount < 3)
+            if (_hitCount < 3)
             {
-              ParticleEffectManager.Instance.PlayBloodParticle();
-               _hitCount++;
+                ParticleEffectManager.Instance.PlayFirstBloodParticle();
+                _hitCount++;
                 Debug.Log(_hitCount);
             }
+
             var player = collision.gameObject;
             player.GetComponent<HealthSystem>()?.Hit();
             

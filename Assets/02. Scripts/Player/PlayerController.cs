@@ -299,13 +299,4 @@ private void Rotate(Vector3 dir)
         Gizmos.DrawWireCube(boxPosition + Vector3.down * boxCastDistance, gizmoBoxSize);
     }
 
-    //particle
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("Sea"))
-        {
-            ParticleEffectManager.Instance.PlaySeaParticle(transform.position);
-        }
-    }
-
 }

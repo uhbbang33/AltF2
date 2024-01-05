@@ -34,11 +34,21 @@ public class ParticleEffectManager : MonoBehaviour
         particle.Play();
     }
 
-    public void PlayBloodParticle()
+    public void PlayFirstBloodParticle()
     {
         ParticleSystem[] particels = firsHitBloodParticle.GetComponentsInChildren<ParticleSystem>();
 
         foreach(ParticleSystem particle in particels)
+        {
+            particle.Play();
+        }
+    }
+
+    public void PlaySecondBloodParticle()
+    {
+        ParticleSystem[] particels = secondHitBloodParticle.GetComponentsInChildren<ParticleSystem>();
+
+        foreach (ParticleSystem particle in particels)
         {
             particle.Play();
         }

@@ -51,6 +51,7 @@ public class HealthSystem : MonoBehaviour
     {
         if(1 << other.gameObject.layer == deathLayer)
         {
+            ParticleEffectManager.Instance.PlaySeaParticle(transform.position);
             Die();
         }
     }
