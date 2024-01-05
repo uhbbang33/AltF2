@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
+        IsPlayerDied = false;
         FindScoreUI();
     }
 
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
     private void OnPlayerDied()
     {
         ++DeathCount;
+        _scoreUI?.SetDeathCount(DeathCount);
         IsPlayerDied = true;
         _ui.ShowPoppUI(EPopup.UIDeath);
     }

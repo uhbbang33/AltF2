@@ -63,11 +63,17 @@ public class PlayerController : MonoBehaviour
         inputState = PlayerInputState.UnLocked;
     }
 
+    private void Update()
+    {
+        CheckElevator();
+
+    }
+
     private void FixedUpdate()
     {
         Move();
         Attack();
-        CheckElevator();
+        //CheckElevator();
         CheckAirAndGroundAnimation();
     }
 
@@ -202,7 +208,7 @@ public class PlayerController : MonoBehaviour
         Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset ,
             transform.position.z);
         _isElevator = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, out hit, Quaternion.identity, 
-            boxCastDistance + elevatorBoxCastDistanceModifier, LayerMask.GetMask("Elevator", "Swing"),
+            boxCastDistance + elevatorBoxCastDistanceModifier + 0.2f, LayerMask.GetMask("Elevator", "Swing"),
             QueryTriggerInteraction.Ignore);
 
 
