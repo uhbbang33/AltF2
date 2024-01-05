@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     public Slider _sfxSlider;
     public Slider _masterSlider;
 
+
     private void Awake()
     {
         _audioClip = GetComponent<AudioClip>();
@@ -78,17 +79,17 @@ public class AudioManager : MonoBehaviour
     //º¼·ýÁ¶Àý
     public void BGSoundVolume() 
     {
-        float sound = _bgmSlider.value;
-        Mixer.SetFloat("BGVolume", sound);
+        float bgmsound = _bgmSlider.value;
+        Mixer.SetFloat("BGVolume", bgmsound);
     }
     public void SFXSoundVolume()
     {
-        float sound = _sfxSlider.value;
-        Mixer.SetFloat("SFXVolume", sound);
+        float sfxsound = _sfxSlider.value;
+        Mixer.SetFloat("SFXVolume", sfxsound);
     }
     public void MasterVolume()
     {
-        float sound = _masterSlider.value;
-        Mixer.SetFloat("Master", sound);
+        float mastersound = _masterSlider.value;
+        Mixer.SetFloat("Master", mastersound);
     }
 }
