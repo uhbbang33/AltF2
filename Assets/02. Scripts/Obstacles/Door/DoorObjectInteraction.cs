@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class DoorObjectInteraction : BounceObstacle
+public class DoorObjectInteraction : BaseObstacle
 {
     [Header("- Rot")]
     [SerializeField] private float rotX;
@@ -55,8 +55,6 @@ public class DoorObjectInteraction : BounceObstacle
                 // 여기에 문을 열기 위한 로직 추가
                 StartCoroutine(InteractDoor());
             }
-            //InteractDoor();
-            //StartCoroutine(InteractDoor());
         }
     }
 
@@ -65,7 +63,7 @@ public class DoorObjectInteraction : BounceObstacle
     /// 코루틴을 이용해 문을 회전
     /// </summary>
     /// <returns></returns>
-    private IEnumerator InteractDoor()
+    public IEnumerator InteractDoor()
     {
         _isInteracting = true;
 
@@ -108,7 +106,7 @@ public class DoorObjectInteraction : BounceObstacle
     }
 
 
-    private void DoorPushForce()
+    public void DoorPushForce()
     {
         float zValue = 1f;
 
@@ -120,18 +118,5 @@ public class DoorObjectInteraction : BounceObstacle
         Debug.Log(forceDirection.normalized * addForce);
 
     }
-
-
-    //private IEnumerator PlayerComponentControl(Collision collision)
-    //{
-    //    collision.gameObject.GetComponent<Animator>().enabled = false;
-    //    collision.gameObject.GetComponent<PlayerController>().enabled = false;
-
-    //    yield return new WaitForSeconds(1.1f);
-
-    //    collision.gameObject.GetComponent<Animator>().enabled = true;
-    //    collision.gameObject.GetComponent<PlayerController>().enabled = true;
-
-    //}
 
 }
