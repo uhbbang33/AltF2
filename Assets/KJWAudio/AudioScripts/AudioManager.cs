@@ -1,33 +1,63 @@
+using System.Xml.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 public class AudioManager : MonoBehaviour
 {
+    private AudioClip _audioClip;
     public AudioSource BgSound;
     public AudioSource[] SFXSound;
+    private string _bgFilename;
 
-
-    //배경음 바꿀 때 GMTest.Instance.audioManager.
 
     private void Awake()
     {
+        _audioClip = GetComponent<AudioClip>();
         DontDestroyOnLoad(this);
     }
-    public void SFXPlay(string sfxName, AudioClip clip) 
+    private void Start()
     {
-        GameObject AudioGo = new GameObject( sfxName+"Sound" );
+        SceneManager.sceneLoaded += LoadedsceneEvent;
+        
+        BgSoundPlay("BG1", 0.05f);
+    }
+
+    private void LoadedsceneEvent(Scene scene, LoadSceneMode arg1)
+    {
+        if (scene.name == "KDH_Obstacle")
+        {
+            _bgFilename = "BG1";
+        }
+        else if (scene.name == "99.BJH")
+        {
+            _bgFilename = "BG3";
+        }
+        BgSoundPlay(_bgFilename, 0.05f);
+    }
+
+    public void SFXPlay(string sfxName, Vector3 audioPosition, float audioVolume)
+    {
+        GameObject AudioGo = new GameObject(sfxName + "Sound");
         AudioSource audiosource = AudioGo.AddComponent<AudioSource>();
-        audiosource.clip = clip;
+
+        _audioClip = Resources.Load<AudioClip>("Audios/SFX/"+sfxName);
+        audiosource.clip = _audioClip;
+        audiosource.volume = audioVolume;
         audiosource.Play();
 
-        Destroy(audiosource, clip.length );
+        
+        Destroy(audiosource.gameObject, audiosource.clip.length);
     }
+
     //GMTest.Instance.audioManager.SFXPlay("die", AudioClip);
 
-    public void BgSoundPlay(AudioClip clip) 
+    public void BgSoundPlay(string BgName, float audioVolume)
     {
-        BgSound.clip = clip;
+        _audioClip = Resources.Load<AudioClip>("Audios/BGM/"+ BgName);
+        BgSound.clip = _audioClip;
         BgSound.loop = true;
-        BgSound.volume = 0.1f;
+        BgSound.volume = audioVolume;
         BgSound.Play();
     }
 

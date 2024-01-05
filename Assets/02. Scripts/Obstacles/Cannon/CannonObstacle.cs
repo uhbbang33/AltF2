@@ -19,7 +19,12 @@ public class CannonObstacle : MonoBehaviour
     public float ShootForce;
 
     private Queue<GameObject> _ballQueue = new Queue<GameObject>();
-
+    private AudioSource _audioSource;
+    
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
     private void Start()
     {
         for (int i = 0; i < InstanceCount; i++)
@@ -41,13 +46,16 @@ public class CannonObstacle : MonoBehaviour
         ball.SetActive(true);
         ball.GetComponent<Rigidbody>().AddForce((TargetPositionObject.transform.position - OriginPositionObject.transform.position).normalized * ShootForce, ForceMode.Impulse);
         _ballQueue.Enqueue(ball);
+
     }
 
     private IEnumerator InstanceBall()
     {
+        
         while (true)
         {
             ActiveBall(_ballQueue.Dequeue());
+            _audioSource.Play();
             yield return new WaitForSeconds(DelayTime);
         }
     }

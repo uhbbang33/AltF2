@@ -20,7 +20,7 @@ public class BounceObstacle : BaseObstacle
 
             Rigidbody playerRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             playerRigidbody.AddForce(reflectDirection * _bounceForce, ForceMode.VelocityChange);
-
+            GMTest.Instance.audioManager.SFXPlay(gameObject.name.Replace("(Clone)", ""), gameObject.transform.position, 0.1f);
 
             // player lagdoll
             //collision.gameObject.GetComponent<PlayerRagdollController>().SetRagdollState(true);
