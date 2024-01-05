@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -231,6 +233,15 @@ public class PlayerController : MonoBehaviour
 
         Vector3 gizmoBoxSize = new Vector3(0.6f, 0.1f, 0.6f);
         Gizmos.DrawWireCube(boxPosition + Vector3.down * boxCastDistance, gizmoBoxSize);
+    }
+
+    //particle
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Sea"))
+        {
+            ParticleEffectManager.Instance.PlaySeaParticle(transform.position);
+        }
     }
 
 }
