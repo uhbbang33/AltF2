@@ -375,7 +375,8 @@ AudioSource:
   m_GameObject: {fileID: 8580784097366473904}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3449600887657182282, guid: 9df5e02c141c5364694e1282cff24981,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 9e25fa96329a9fa41908e2066495b109, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.106
@@ -600,7 +601,7 @@ Transform:
   - {fileID: 6305425664102954158}
   - {fileID: 1315974087572726540}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &9095576095561295098
 BoxCollider:

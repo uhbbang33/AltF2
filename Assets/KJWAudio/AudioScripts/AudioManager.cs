@@ -1,5 +1,7 @@
 using System.Xml.Linq;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 
@@ -8,6 +10,7 @@ public class AudioManager : MonoBehaviour
     private AudioClip _audioClip;
     public AudioSource BgSound;
     public AudioSource[] SFXSound;
+    public AudioMixer Mixer;
     private string _bgFilename;
 
 
@@ -40,7 +43,7 @@ public class AudioManager : MonoBehaviour
     {
         GameObject AudioGo = new GameObject(sfxName + "Sound");
         AudioSource audiosource = AudioGo.AddComponent<AudioSource>();
-
+        audiosource.outputAudioMixerGroup = Mixer.FindMatchingGroups("SFX")[0];
         _audioClip = Resources.Load<AudioClip>("Audios/SFX/"+sfxName);
         audiosource.clip = _audioClip;
         audiosource.volume = audioVolume;
@@ -56,6 +59,7 @@ public class AudioManager : MonoBehaviour
     {
         _audioClip = Resources.Load<AudioClip>("Audios/BGM/"+ BgName);
         BgSound.clip = _audioClip;
+        BgSound.outputAudioMixerGroup = Mixer.FindMatchingGroups("BGSound")[0];
         BgSound.loop = true;
         BgSound.volume = audioVolume;
         BgSound.Play();
@@ -64,5 +68,9 @@ public class AudioManager : MonoBehaviour
     //GMTest.Instance.audioManager.BgSoundPlay(AudioClip);
 
     //mix º¼·ý Á¶Àý
+    public void BGSoundVolume(float value) 
+    {
+        Mixer.SetFloat("BGSoundVolume", Mathf.Log10(value) * 20);
+    }
 
 }

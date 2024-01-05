@@ -64,7 +64,7 @@ Transform:
   - {fileID: 1309951009556037780}
   - {fileID: 8178860752007071821}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7543033403520883110
 MonoBehaviour:
@@ -94,7 +94,8 @@ AudioSource:
   m_GameObject: {fileID: 2723660454035812136}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3449600887657182282, guid: 9df5e02c141c5364694e1282cff24981,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 785f007258495d145a0848e404f23be1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
