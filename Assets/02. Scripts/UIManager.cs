@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager
 {
@@ -44,7 +45,7 @@ public class UIManager
         var eventSystem = GameObject.Find("@EventSystem");
         if (eventSystem == null)
         {
-            Object.Instantiate(Resources.Load<GameObject>("@EventSystem"));
+            eventSystem = Object.Instantiate(Resources.Load<GameObject>("@EventSystem"));
         }
         Object.DontDestroyOnLoad(eventSystem);
     }
@@ -57,6 +58,7 @@ public class UIManager
         {
             _popupUIs[name].GetComponent<Canvas>().sortingOrder = _order++;
             _popupStack.Push(_popupUIs[name]);
+            Cursor.lockState = CursorLockMode.None;
             _popupUIs[name].SetActive(true);
         }
     }
@@ -67,6 +69,11 @@ public class UIManager
         {
             --_order;
             _popupStack.Pop().SetActive(false);
+        }
+
+        if(_popupStack.Count == 0 && SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

@@ -34,7 +34,7 @@ RectTransform:
   m_Children:
   - {fileID: 832810940438989240}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 3013863354625372288}
   - component: {fileID: 842650949805007383}
   m_Layer: 5
-  m_Name: GridBox
+  m_Name: Volumes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 532038022497226511}
   - component: {fileID: 8724594741249308604}
   m_Layer: 5
-  m_Name: MasterVolmue
+  m_Name: Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1166,7 +1166,7 @@ GameObject:
   - component: {fileID: 1946079318618626111}
   - component: {fileID: 2349562969524254033}
   m_Layer: 5
-  m_Name: SFXVolume
+  m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1940,7 +1940,7 @@ GameObject:
   - component: {fileID: 5024894292101777889}
   - component: {fileID: 2625059198096406421}
   m_Layer: 5
-  m_Name: BGMVolume
+  m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

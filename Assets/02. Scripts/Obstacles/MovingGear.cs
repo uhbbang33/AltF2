@@ -29,7 +29,7 @@ public class MovingGear : MonoBehaviour
     {
         if(Gear != null)
         {
-            Reciprocation.end.position = transform.position + Vector3.right * Reciprocation.Distance;
+            Reciprocation.end.localPosition = Vector3.right * Reciprocation.Distance;
         }
     }
 }

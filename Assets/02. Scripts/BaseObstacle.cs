@@ -9,10 +9,12 @@ public class BaseObstacle : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // player damage
-
+            var player = collision.gameObject;
+            player.GetComponent<HealthSystem>()?.Hit();
+            
 
             // player lagdoll
-            collision.gameObject.GetComponent<PlayerRagdollController>().SetRagdollState(true);
+            collision.gameObject.GetComponent<PlayerRagdollController>()?.SetRagdollState(true);
 
             Debug.Log(collision.gameObject.name);
         }

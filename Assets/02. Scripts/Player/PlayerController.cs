@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.SetPlayer(this);
         Cursor.lockState = CursorLockMode.Locked;
         inputState = PlayerInputState.UnLocked;
     }
