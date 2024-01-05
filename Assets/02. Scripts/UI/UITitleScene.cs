@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UITitleScene : MonoBehaviour
@@ -34,7 +35,7 @@ public class UITitleScene : MonoBehaviour
         Button button;
         if (_buttons.TryGetValue(Buttons.Start.ToString(), out button))
         {
-            button.onClick.AddListener(() => { /* Load Game Scene */  });
+            button.onClick.AddListener(() => { GameManager.Instance.StartGame(); });
         }
 
         if (_buttons.TryGetValue(Buttons.Setting.ToString(), out button))
@@ -45,6 +46,14 @@ public class UITitleScene : MonoBehaviour
         if (_buttons.TryGetValue(Buttons.Exit.ToString(), out button))
         {
             button.onClick.AddListener(() => { GameManager.Instance.ExitGame(); });
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.UI.ClosePopupUI();
         }
     }
 }

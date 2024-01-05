@@ -13,13 +13,12 @@ public class GameManager : MonoBehaviour
     { 
         get
         {
-            _instanace = GameObject.Find("@GameManager").GetComponent<GameManager>();
+            _instanace = GameObject.Find("@GameManager")?.GetComponent<GameManager>();
 
             if(_instanace == null)
             {
-                _instanace = new GameManager();
                 var go = new GameObject("@GameManager");
-                go.AddComponent<GameManager>();
+                _instanace = go.AddComponent<GameManager>();
                 DontDestroyOnLoad(_instanace);
             }
             else
@@ -39,48 +38,42 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    [field: SerializeField] public int DeathCount { get; private set; } = 0;
-
+    public int DeathCount { get; private set; } = 0;
+    public float PlayTime { get; private set; } = 0;
     private UIScore _scoreUI;
-    public bool IsPlayerDied { get; private set; } = false;
+    public bool IsPlayerDied { get; private set; } = true;
+    private bool _isGameStarted = false;
 
-    private Transform _respawnPosition;
-
-    private Transform _startPosition;
+    public PlayerController Player { get; private set; }
 
     private void Awake()
     {
         _ui.Init();
-    }
-
-    private void Start()
-    {
-        // OnPlayerDied();
+        FindScoreUI();
     }
 
     private void Update()
     {
-        _scoreUI?.SetPlayTime(Time.time);
-
-        UITestInput();
-    }
-
-    private void UITestInput()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            _ui.ShowPoppUI(EPopup.UIPauseGame);
-        }
-
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            SceneManager.LoadScene(1);
-        }
+        if (_isGameStarted == false) return;
+        PlayTime += Time.deltaTime;
+        _scoreUI?.SetPlayTime(PlayTime);
     }
 
     private void OnLevelWasLoaded(int level)
     {
-        _scoreUI = GameObject.Find("HUD").GetComponent<UIGameScene>().Score;
+        FindScoreUI();
+    }
+
+
+    private void FindScoreUI()
+    {
+        _scoreUI = GameObject.Find("HUD")?.GetComponent<UIGameScene>().Score;
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
+        _isGameStarted = true;
     }
 
     public void ExitGame()
@@ -92,22 +85,22 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-    private void OnPlayerDied()
+    public void SetPlayer(PlayerController player)
     {
-        IsPlayerDied = true;
-        ++DeathCount;
-        _ui.ShowPoppUI(EPopup.UIDeath);
-
-        Invoke("RespawnPlayer", 1.0f);
+        Player = player;
+        var hpSystem = Player.GetComponent<HealthSystem>();
+        if (hpSystem != null )
+        {
+            //hpSystem.OnHit += 
+            hpSystem.OnDied += OnPlayerDied;
+            // Player 부활 이벤트 
+        }
     }
 
-    private void RespawnPlayer()
+    private void OnPlayerDied()
     {
-        _ui.ClosePopupUI();
-        IsPlayerDied = false;
-
-        // var respawnPosition = respawnPosition == null ? _startPosition : _respawnPosition;
-
-        // Resources.Load<GameObject>("Player")
+        ++DeathCount;
+        IsPlayerDied = true;
+        _ui.ShowPoppUI(EPopup.UIDeath);
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BladeController : BaseObstacle
+public class BladeController : BounceObstacle
 {
 
     [Header("Routine Speed")]
@@ -16,6 +16,12 @@ public class BladeController : BaseObstacle
 
     private bool _dropBlade;
 
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource=GetComponent<AudioSource>();
+    }
     private void OnCollisionEnter(Collision collision)
     {
         base.OnCollisionEnter(collision);
@@ -32,6 +38,7 @@ public class BladeController : BaseObstacle
 
     public void RoutineTrap()
     {
+        Debug.Log("Routine");
         StartCoroutine(Drop());
     }
 
@@ -45,6 +52,7 @@ public class BladeController : BaseObstacle
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, _minHeightPos, DropSpeed * Time.deltaTime);
             yield return null;
         }
+        _audioSource.Play();
         StartCoroutine(Reload());
     }
 

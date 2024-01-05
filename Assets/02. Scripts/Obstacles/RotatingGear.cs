@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotatingGear : BaseObstacle
+public class RotatingGear : BounceObstacle
 {
     [field : SerializeField] public Arm Arm { get; private set; }
 

@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 3857752693333777169}
   m_Layer: 0
   m_Name: SaveBalloon
-  m_TagString: Untagged
+  m_TagString: SaveBoard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,7 +282,7 @@ Transform:
   - {fileID: 3976171421296477663}
   - {fileID: 2228232709935206256}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4306135865119100037
 Rigidbody:
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 2513450888696974421}
   m_Layer: 0
   m_Name: Board
-  m_TagString: Untagged
+  m_TagString: SaveBoard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -59,7 +59,6 @@ public class PlayerRagdollController : MonoBehaviour
 
         _playerRigidbody.velocity = Vector3.zero;
         transform.position = _pevisObject.transform.position + Vector3.up;
-        _playerCollider.enabled = true;
 
         _cameraRoot.transform.SetParent(transform, false);
 

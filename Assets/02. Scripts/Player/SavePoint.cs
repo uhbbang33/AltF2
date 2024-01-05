@@ -41,7 +41,7 @@ public class SavePoint : MonoBehaviour
     {
         RaycastHit _hit;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out _hit, 1))
+        if (Physics.Raycast(transform.position, Vector3.down, out _hit, 1,4))
         {
             if (_hit.transform.CompareTag("SaveBoard"))
             {
@@ -53,7 +53,7 @@ public class SavePoint : MonoBehaviour
         }
     }
     
-    IEnumerator ReStartCo()
+    public IEnumerator ReStartCo()
     {
         //««¿Ã∆Â∆Æ
         yield return new WaitForSeconds(1f);
