@@ -20,7 +20,7 @@ public class SaveBalloon : MonoBehaviour
 
     private void Start()
     {
-        _rigidbody.velocity = Vector3.up * speed;
+       // 시작하자마자 올라가는 부분 수정
     }
 
     public IEnumerator Pop(GameObject gameObj)
@@ -38,4 +38,13 @@ public class SaveBalloon : MonoBehaviour
     {
         // position 저장
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            _rigidbody.velocity = Vector3.up * speed;
+        }
+    }
+
 }
