@@ -47,7 +47,7 @@ public class PlayerRagdollController : MonoBehaviour
 
     IEnumerator ReleaseRagdoll()
     {
-        _playerController.inputState = PlayerInputState.Locked;
+        _playerController.InputActionLocked();
 
         yield return new WaitForSeconds(5f);
         //_playerRigidbody.isKinematic = false;
@@ -66,6 +66,6 @@ public class PlayerRagdollController : MonoBehaviour
         
         _co = null;
 
-        _playerController.inputState = PlayerInputState.UnLocked;
+        _playerController.InputActionUnLocked();
     }
 }
