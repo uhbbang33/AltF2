@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class BaseObstacle : MonoBehaviour
 {
+
     private float _hitCount = 0;
+    string name = "";
+
     protected void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -24,9 +27,18 @@ public class BaseObstacle : MonoBehaviour
             // player lagdoll
             collision.gameObject.GetComponent<PlayerRagdollController>()?.SetRagdollState(true);
 
-            Debug.Log(collision.gameObject.name);
-            Debug.Log(gameObject.gameObject.name);
-            GMTest.Instance.audioManager.SFXPlay(gameObject.name.Replace("(Clone)", ""), gameObject.transform.position, 0.1f);
+            nameset();
+
+            GMTest.Instance.audioManager.SFXPlay((name), gameObject.transform.position, 0.1f);
+        }
+    }
+
+    private void nameset() 
+    {
+        name = gameObject.name.Replace("(Clone)", "");
+        for (int i = 0; i < 20; i++)
+        {
+            name = name.Replace(" (" + i + ")", "");
         }
     }
 }
