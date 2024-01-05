@@ -16,8 +16,6 @@ public class Elevator : MonoBehaviour
 
     [HideInInspector]
     public Vector3 vec;
-    
-
 
     private void Start()
     {
@@ -54,6 +52,5 @@ public class Elevator : MonoBehaviour
 
         transform.position += movement;
 
-        
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Elevator
   - Door
   - Swing
+  - SaveBoard
   layers:
   - Default
   - TransparentFX

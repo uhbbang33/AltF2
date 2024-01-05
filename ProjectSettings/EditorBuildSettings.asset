@@ -5,17 +5,17 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/01. Scenes/TitleScene.unity
+  - enabled: 0
+    path: Assets/01. Scenes/PJU.unity
     guid: 2e4f6df62dbebda45968b406d64c24c2
-  - enabled: 1
-    path: Assets/01. Scenes/99.BJH.unity
-    guid: beb60bd174e930143952601b4ae21535
-  - enabled: 1
-    path: Assets/01. Scenes/KDH_Obstacle.unity
-    guid: 9e8d89ff363a97848a0efedddef0f539
   - enabled: 0
     path: "Assets/01. Scenes/\uBCF8\uC778\uC774\uB984\uC758 Scene\uC744 \uB9CC\uB4E4\uC5B4\uC11C
       \uC0AC\uC6A9\uD574\uC8FC\uC138\uC694.unity"
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/01. Scenes/KJW.unity
+    guid: 3926bd47ddf8a064d8f44db8625bbb54
+  - enabled: 1
+    path: Assets/01. Scenes/99.BJH.unity
+    guid: beb60bd174e930143952601b4ae21535
   m_configObjects: {}

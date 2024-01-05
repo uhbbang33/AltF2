@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class RotationJump : BounceObstacle
+public class RotationJump : BaseObstacle
 {
     [SerializeField]
     private float _jumpforce = 40f;
@@ -15,8 +15,6 @@ public class RotationJump : BounceObstacle
 
     void OnCollisionEnter(Collision collision)
     {
-        base.OnCollisionEnter(collision);
-
         if (collision.gameObject.tag == "Player" && _checkRotate && _collidertime)
         {
             StartCoroutine(RotatePad(collision));
@@ -47,9 +45,10 @@ public class RotationJump : BounceObstacle
                 Rigidbody otherRigidbody = collision.gameObject.GetComponent<Rigidbody>();
                 if (otherRigidbody != null&& _onPad)
                 {
-                    StartCoroutine(PlayerEnabledf(collision)); // 임시
+                    //StartCoroutine(PlayerEnabledf(collision)); // 임시
                     Debug.Log("addforce 방향 : " + forwardDirection * _jumpforce);
                     otherRigidbody.AddForce(forwardDirection * _jumpforce, ForceMode.Impulse);
+                    base.OnCollisionEnter(collision);
                 }
 
                 
@@ -73,8 +72,8 @@ public class RotationJump : BounceObstacle
         _rotateSpeed = 1f;
     }
 
-    //나중에 고치기
-    IEnumerator PlayerEnabledf(Collision collision) 
+    //임시
+/*    IEnumerator PlayerEnabledf(Collision collision) 
     {
         yield return null;
         collision.gameObject.GetComponent<Animator>().enabled = false;
@@ -82,5 +81,5 @@ public class RotationJump : BounceObstacle
         yield return new WaitForSeconds(1.1f);
         collision.gameObject.GetComponent<Animator>().enabled = true;
         collision.gameObject.GetComponent<PlayerController>().enabled = true;
-    }
+    }*/
 }

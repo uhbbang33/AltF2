@@ -23,6 +23,9 @@ public class GMTest : MonoBehaviour
             if (_instance == null) _instance = value;
         }
     }
+
+    public AudioManager audioManager;
+
     private void Awake()
     {
         if (_instance == null)
@@ -35,8 +38,5 @@ public class GMTest : MonoBehaviour
             if (_instance != this) Destroy(this);
         }
     }
-
-    public AudioManager audioManager;
-
 
 }

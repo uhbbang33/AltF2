@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BounceObstacle : BaseObstacle
 {
-    private float _bounceForce = 5f;
+    private float _bounceForce = 100f;
 
     protected void OnCollisionEnter(Collision collision)
     {
@@ -17,15 +17,12 @@ public class BounceObstacle : BaseObstacle
             if (reflectDirection.y < 0)
                 reflectDirection = new Vector3(reflectDirection.x, -reflectDirection.y, reflectDirection.z);
             //reflectDirection.y /= 100;
+             
+            //Rigidbody playerRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+            //playerRigidbody.AddForce(reflectDirection * _bounceForce, ForceMode.VelocityChange);
 
-            Rigidbody playerRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-            playerRigidbody.AddForce(reflectDirection * _bounceForce, ForceMode.VelocityChange);
-
-
-            // player lagdoll
-            //collision.gameObject.GetComponent<PlayerRagdollController>().SetRagdollState(true);
-
-            //Debug.Log(reflectDirection * _bounceForce);
+            PlayerRagdollController ragdoll = collision.gameObject.GetComponent<PlayerRagdollController>();
+            ragdoll.AddForceToPevis(reflectDirection * _bounceForce);
         }
     }
 }

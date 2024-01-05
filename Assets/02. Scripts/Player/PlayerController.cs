@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 boxSize = new Vector3(0.6f, 0.1f, 0.6f);
     private const float GroundedOffset = -0.17f;
     private const float boxCastDistance = 0.2f;
+    private const float elevatorBoxCastDistanceModifier = 0.2f;
+    private const float RandBoxCastDistanceModifier = 1f;
     private bool _isAttack;
     private bool _isRun;
 
@@ -199,11 +201,15 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset ,
             transform.position.z);
-        _isElevator = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, out hit, Quaternion.identity, boxCastDistance, LayerMask.GetMask("Elevator", "Swing"),
+        _isElevator = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, out hit, Quaternion.identity, 
+            boxCastDistance + elevatorBoxCastDistanceModifier, LayerMask.GetMask("Elevator", "Swing"),
             QueryTriggerInteraction.Ignore);
+
 
         if (_isElevator)
         {
+            if(_rigidbody.velocity.y < 0f)
+                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -.5f, _rigidbody.velocity.z);
             transform.parent = hit.transform;
         }
         else
@@ -214,9 +220,25 @@ public class PlayerController : MonoBehaviour
 
     private void CheckAirAndGroundAnimation()
     {
-        bool isGrounded = IsGrounded();
-        _animator.SetBool("Air", !isGrounded);
-        _animator.SetBool("Grounded", isGrounded);
+        Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+           transform.position.z);
+        bool isRand = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, Quaternion.identity, 
+            boxCastDistance + RandBoxCastDistanceModifier, GroundLayerMask,
+            QueryTriggerInteraction.Ignore);
+
+        _animator.SetBool("Air", !isRand);
+        _animator.SetBool("Grounded", isRand);
+    }
+
+    public void InputActionLocked()
+    {
+        inputState = PlayerInputState.Locked;
+        _moveInput = Vector2.zero;
+    }
+
+    public void InputActionUnLocked()
+    {
+        inputState = PlayerInputState.UnLocked;
     }
 
     // test
