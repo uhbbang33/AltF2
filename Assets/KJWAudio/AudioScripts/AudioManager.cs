@@ -8,6 +8,10 @@ public class AudioManager : MonoBehaviour
 
     //배경음 바꿀 때 GMTest.Instance.audioManager.
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
     public void SFXPlay(string sfxName, AudioClip clip) 
     {
         GameObject AudioGo = new GameObject( sfxName+"Sound" );
