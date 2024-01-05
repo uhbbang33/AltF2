@@ -68,9 +68,13 @@ public class AudioManager : MonoBehaviour
     //GMTest.Instance.audioManager.BgSoundPlay(AudioClip);
 
     //mix º¼·ý Á¶Àý
-    public void BGSoundVolume(float value) 
+/*    public void BGSoundVolume(float value) 
     {
-        Mixer.SetFloat("BGSoundVolume", Mathf.Log10(value) * 20);
+        Mixer.SetFloat("BGSound", Mathf.Log10(value) * 20);
     }
+    public void SFXSoundVolume(float value)
+    {
+        Mixer.SetFloat("SFXVolume", Mathf.Log10(value) * 20);
+    }*/
 
 }
