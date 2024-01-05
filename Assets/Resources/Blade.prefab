@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3909183411964091377}
   - component: {fileID: 8600431646636626639}
   - component: {fileID: 5980749535411660752}
-  - component: {fileID: 6795946210211544490}
+  - component: {fileID: 9200584007765395292}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.86511517, y: 4.375948, z: 0.18645668}
   m_Center: {x: 0, y: 2.8205686, z: 0.0085577965}
---- !u!114 &6795946210211544490
+--- !u!114 &9200584007765395292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5356769063351871836}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb6b07ccebecc864699c9112f86fe4de, type: 3}
+  m_Script: {fileID: 11500000, guid: c2a880386d180d445a22aa9b069fc1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bounceForce: 100

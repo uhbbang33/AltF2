@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BladeController : BaseObstacle
+public class BladeController : BounceObstacle
 {
 
     [Header("Routine Speed")]
