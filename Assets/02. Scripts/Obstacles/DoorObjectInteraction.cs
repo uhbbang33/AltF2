@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class DoorObjectInteraction : BounceObstacle
+public class DoorObjectInteraction : BaseObstacle
 {
     [Header("- Rot")]
     [SerializeField] private float rotX;
