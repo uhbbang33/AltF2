@@ -725,6 +725,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 063790cd-3c18-462b-8ba9-929fcb5f844b
     m_ActionName: Player/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6436358486132665889}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnRollInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 875aac81-9eb4-4403-9d05-dfd0a80444e9
+    m_ActionName: Player/Roll[/Keyboard/c]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -745,6 +761,7 @@ MonoBehaviour:
   moveSpeed: 1000
   runSpeed: 1500
   rotateSpeed: 30
+  rollSpeed: 15
   jumpForce: 30
   GroundLayerMask:
     serializedVersion: 2
