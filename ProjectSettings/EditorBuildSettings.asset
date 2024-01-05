@@ -19,6 +19,12 @@ EditorBuildSettings:
     path: Assets/01. Scenes/99.BJH.unity
     guid: beb60bd174e930143952601b4ae21535
   - enabled: 1
-    path: Assets/01. Scenes/KDH_Obstacle.unity
+    path: Assets/01. Scenes/StageScene.unity
     guid: 9e8d89ff363a97848a0efedddef0f539
+  - enabled: 1
+    path: Assets/01. Scenes/KDH_TestChange.unity
+    guid: bf924760bcdd5d742824fff2f5515f76
+  - enabled: 1
+    path: Assets/01. Scenes/KDH_TestChange 1.unity
+    guid: 3bbc68a290eb3fc46aef4f5498a7f3bf
   m_configObjects: {}
