@@ -6,6 +6,10 @@ using UnityEngine.UIElements;
 public class ParticleEffectManager : MonoBehaviour
 {
     public ParticleSystem waterParticle;
+    public GameObject firsHitBloodParticle;
+    public GameObject secondHitBloodParticle;
+
+
     public static ParticleEffectManager Instance;
 
     private void Awake()
@@ -28,6 +32,16 @@ public class ParticleEffectManager : MonoBehaviour
         particle.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
 
         particle.Play();
+    }
+
+    public void PlayBloodParticle()
+    {
+        ParticleSystem[] particels = firsHitBloodParticle.GetComponentsInChildren<ParticleSystem>();
+
+        foreach(ParticleSystem particle in particels)
+        {
+            particle.Play();
+        }
     }
 
 }
