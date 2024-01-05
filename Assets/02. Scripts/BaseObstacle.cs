@@ -4,19 +4,11 @@ using UnityEngine;
 
 public class BaseObstacle : MonoBehaviour
 {
-    private float _hitCount = 0;
     protected void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             // player damage
-            if (_hitCount < 3)
-            {
-                ParticleEffectManager.Instance.PlayFirstBloodParticle();
-                _hitCount++;
-                Debug.Log(_hitCount);
-            }
-
             var player = collision.gameObject;
             player.GetComponent<HealthSystem>()?.Hit();
             
