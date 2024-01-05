@@ -10,4 +10,19 @@ public class UIGameScene : MonoBehaviour
     {
         Score = GetComponentInChildren<UIScore>();
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(Time.timeScale == 0)
+            {
+                GameManager.UI.ClosePopupUI();
+            }
+            else
+            {
+                GameManager.UI.ShowPoppUI(EPopup.UIPauseGame);
+            }
+        }
+    }
 }

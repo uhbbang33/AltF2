@@ -17,12 +17,12 @@ public class UISetting : MonoBehaviour
 
     private void Awake()
     {
-        var box = transform.Find("Panel").Find("GridBox");
+        var box = transform.Find("Panel").Find("Volumes");
 
         var names = Enum.GetNames(typeof(Sliders));
         for(int i = 0; i < names.Length; ++i)
         {
-            var slider = box.Find(names[i]).GetComponent<Slider>();
+            var slider = box.Find(names[i]).GetComponentInChildren<Slider>();
             if(slider != null)
             {
                 _soundSliders.TryAdd(names[i], slider);

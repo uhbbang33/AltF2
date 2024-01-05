@@ -50,7 +50,7 @@ public class UIPauseGame : MonoBehaviour
 
         if (_buttons.TryGetValue(Buttons.Exit.ToString(), out button))
         {
-            button.onClick.AddListener(() => { /* Load Title Scene */ });
+            button.onClick.AddListener(() => { GameManager.Instance.ExitGame(); });
         }
     }
 

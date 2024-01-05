@@ -38,6 +38,7 @@ public class BladeController : BaseObstacle
 
     public void RoutineTrap()
     {
+        Debug.Log("Routine");
         StartCoroutine(Drop());
     }
 
