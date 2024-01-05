@@ -34,6 +34,9 @@ public class HealthSystem : MonoBehaviour
         {
             OnHit?.Invoke();
         }
+
+        HitParticleEvent(_health);
+
     }
 
     private void Reset()
@@ -54,5 +57,18 @@ public class HealthSystem : MonoBehaviour
             ParticleEffectManager.Instance.PlaySeaParticle(transform.position);
             Die();
         }
+    }
+
+    private void HitParticleEvent(int _curHealth)
+    {
+        if(_curHealth == 2)
+        {
+            ParticleEffectManager.Instance.PlayFirstBloodParticle();
+        }
+        else if(_curHealth == 1)
+        {
+            ParticleEffectManager.Instance.PlaySecondBloodParticle();
+        }
+
     }
 }
