@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
         {
             // АјАн
             _animator.SetTrigger("Attack");
+            GMTest.Instance.audioManager.SFXPlay(("Bird"), gameObject.transform.position, 0.1f);
             Rotate(GetCamDir());
             Instantiate(chickenPrefab, chickenSpaawnPos.transform.position, Quaternion.identity);
 
@@ -98,7 +99,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Rotate(Vector3 dir)
+
+private void Rotate(Vector3 dir)
     {
         if (dir == Vector3.zero) return;
         Quaternion rotation = Quaternion.LookRotation(dir);
@@ -186,7 +188,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
             transform.position.z);

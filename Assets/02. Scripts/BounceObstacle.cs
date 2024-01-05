@@ -23,6 +23,8 @@ public class BounceObstacle : BaseObstacle
 
             PlayerRagdollController ragdoll = collision.gameObject.GetComponent<PlayerRagdollController>();
             ragdoll.AddForceToPevis(reflectDirection * _bounceForce);
+            GMTest.Instance.audioManager.SFXPlay(gameObject.name.Replace("(Clone)", ""), gameObject.transform.position, 0.1f);
+
         }
     }
 }

@@ -17,6 +17,8 @@ public class BaseObstacle : MonoBehaviour
             collision.gameObject.GetComponent<PlayerRagdollController>()?.SetRagdollState(true);
 
             Debug.Log(collision.gameObject.name);
+            Debug.Log(gameObject.gameObject.name);
+            GMTest.Instance.audioManager.SFXPlay(gameObject.name.Replace("(Clone)", ""), gameObject.transform.position, 0.1f);
         }
     }
 }
