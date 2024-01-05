@@ -5,21 +5,32 @@ using UnityEngine.SceneManagement;
 public class SavePoint : MonoBehaviour
 {
     private Vector3 _startPoint; // 시작위치 설정.
-    private Vector3 _firstStartPoint = new Vector3(-1,52,44); // 1스테이지 시작위치 설정.
+    private Vector3 _firstStartPoint = new Vector3(0,50,50); // 1스테이지 시작위치 설정.
     private Vector3 _SecondStartPoint = new Vector3(94, 0, 15); // 2스테이지 시작위치 설정.
 
     private Vector3 _savePoint = Vector3.zero;  // 저장위치 설정.
-    
 
+    private HealthSystem HealthSystem;
+    private PlayerRagdollController _playerRagdollController;
+
+    private void Awake()
+    {
+        _playerRagdollController = GetComponent<PlayerRagdollController>();
+        HealthSystem = GetComponent<HealthSystem>();
+    }
     private void Start()
     {
         Scene scene = SceneManager.GetActiveScene();
         sceneCheck(scene);
         _savePoint = _startPoint;
-
+        HealthSystem.OnDied += revive;
         //SceneManager.sceneLoaded += LoadedsceneEvent;
     }
 
+    public void revive() 
+    {
+        StartCoroutine(ReStartCo());
+    }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.R)) 
@@ -55,8 +66,8 @@ public class SavePoint : MonoBehaviour
     
     public IEnumerator ReStartCo()
     {
-        //피이펙트
-        yield return new WaitForSeconds(1f);
+        _playerRagdollController.SetRagdollState(true);
+        yield return new WaitForSeconds(5.1f);
         gameObject.transform.position = _savePoint;
         _savePoint = _startPoint;
     }
@@ -70,6 +81,10 @@ public class SavePoint : MonoBehaviour
         else if (scene.name == "99.BJH")
         {
             _startPoint = _SecondStartPoint;
+        }
+        else
+        {
+            _startPoint = Vector3.zero;
         }
     }
 }

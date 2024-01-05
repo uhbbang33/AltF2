@@ -8,6 +8,7 @@ public class PlayerSound : MonoBehaviour
     private float _time;
     private float _delay =0.5f;
     private PlayerController _playerController;
+    
 
     private void Awake()
     {
