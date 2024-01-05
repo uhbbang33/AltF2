@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class JumpPad : MonoBehaviour
@@ -14,6 +12,7 @@ public class JumpPad : MonoBehaviour
         if (otherRigidbody != null)
         {
             otherRigidbody.AddForce(forwardDirection * _jumpforce, ForceMode.Impulse);
+            GameManager.Instance.AudioManager.SFXPlay(("Pivot"), gameObject.transform.position, 0.1f);
         }
         
     }

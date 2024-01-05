@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -45,7 +44,6 @@ public class RotationJump : BaseObstacle
                 Rigidbody otherRigidbody = collision.gameObject.GetComponent<Rigidbody>();
                 if (otherRigidbody != null&& _onPad)
                 {
-                    //StartCoroutine(PlayerEnabledf(collision)); // 임시
                     Debug.Log("addforce 방향 : " + forwardDirection * _jumpforce);
                     otherRigidbody.AddForce(forwardDirection * _jumpforce, ForceMode.Impulse);
                     base.OnCollisionEnter(collision);
@@ -72,14 +70,4 @@ public class RotationJump : BaseObstacle
         _rotateSpeed = 1f;
     }
 
-    //임시
-/*    IEnumerator PlayerEnabledf(Collision collision) 
-    {
-        yield return null;
-        collision.gameObject.GetComponent<Animator>().enabled = false;
-        collision.gameObject.GetComponent<PlayerController>().enabled = false;
-        yield return new WaitForSeconds(1.1f);
-        collision.gameObject.GetComponent<Animator>().enabled = true;
-        collision.gameObject.GetComponent<PlayerController>().enabled = true;
-    }*/
 }

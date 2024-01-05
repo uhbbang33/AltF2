@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BounceObstacle : BaseObstacle
 {
-    private float _bounceForce = 100f;
+    [SerializeField] private float _bounceForce = 100f;
 
     protected void OnCollisionEnter(Collision collision)
     {
@@ -23,6 +24,7 @@ public class BounceObstacle : BaseObstacle
 
             PlayerRagdollController ragdoll = collision.gameObject.GetComponent<PlayerRagdollController>();
             ragdoll.AddForceToPevis(reflectDirection * _bounceForce);
+
         }
     }
 }

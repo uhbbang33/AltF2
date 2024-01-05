@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private float runSpeed;
     [SerializeField]
     private float rotateSpeed;
+    [SerializeField]
+    private float rollSpeed;
     private Vector2 _moveInput;
 
     [Header("Jump")]
@@ -35,18 +39,21 @@ public class PlayerController : MonoBehaviour
 
     private bool _isGrounded;
     private bool _isElevator;
-    private float lastAttackTime = float.MaxValue;
-    private Vector3 boxSize = new Vector3(0.6f, 0.1f, 0.6f);
-    private const float GroundedOffset = -0.17f;
-    private const float boxCastDistance = 0.2f;
-    private const float elevatorBoxCastDistanceModifier = 0.2f;
-    private const float RandBoxCastDistanceModifier = 1f;
     private bool _isAttack;
     private bool _isRun;
+    private float lastAttackTime = float.MaxValue;
+    private Vector3 boxSize = new Vector3(0.6f, 0.1f, 0.6f);
+
 
     private Rigidbody _rigidbody;
     private Animator _animator;
     private Transform _mainCameraTransform;
+
+    private const float GroundedOffset = -0.17f;
+    private const float boxCastDistance = 0.2f;
+    private const float elevatorBoxCastDistanceModifier = 0.2f;
+    private const float RandBoxCastDistanceModifier = 1f;
+    private const float RollAnimationtime = 1.1f;
 
     private void Awake()
     {
@@ -90,6 +97,26 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private IEnumerator Roll()
+    {
+        _animator.SetTrigger("Roll");
+
+        var dir = transform.forward;
+        dir.y = 0;
+        dir.Normalize();
+
+        float timer = 0f;
+        while (timer < RollAnimationtime)
+        {
+            //_rigidbody.MovePosition(_rigidbody.position + dir * rollSpeed * Time.fixedDeltaTime);
+            _rigidbody.AddForce(dir * rollSpeed, ForceMode.VelocityChange);
+            timer += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        Rotate(dir);
+    }
+
     private void Attack()
     {
         lastAttackTime += Time.deltaTime;
@@ -97,6 +124,7 @@ public class PlayerController : MonoBehaviour
         {
             // АјАн
             _animator.SetTrigger("Attack");
+            GameManager.Instance.AudioManager.SFXPlay(("Bird"), gameObject.transform.position, 0.1f);
             Rotate(GetCamDir());
             Instantiate(chickenPrefab, chickenSpaawnPos.transform.position, Quaternion.identity);
 
@@ -104,7 +132,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Rotate(Vector3 dir)
+
+private void Rotate(Vector3 dir)
     {
         if (dir == Vector3.zero) return;
         Quaternion rotation = Quaternion.LookRotation(dir);
@@ -190,9 +219,22 @@ public class PlayerController : MonoBehaviour
             _isRun = false;
         }
     }
+
+    public void OnRollInput(InputAction.CallbackContext context)
+    {
+        if (inputState == PlayerInputState.Locked) return;
+        if (context.phase == InputActionPhase.Started)
+        {
+            if(IsGrounded())
+            {
+                StartCoroutine(Roll());
+            }
+        }
+    }
+
     #endregion
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
             transform.position.z);
@@ -240,6 +282,7 @@ public class PlayerController : MonoBehaviour
     {
         inputState = PlayerInputState.Locked;
         _moveInput = Vector2.zero;
+        _animator.SetBool("Move", false);
     }
 
     public void InputActionUnLocked()

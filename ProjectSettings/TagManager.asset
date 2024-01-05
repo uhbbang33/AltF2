@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Swing
   - SaveBoard
+  - Sea
   layers:
   - Default
   - TransparentFX

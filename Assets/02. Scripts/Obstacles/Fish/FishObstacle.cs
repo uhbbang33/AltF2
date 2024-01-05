@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class FishObstacle : BaseObstacle
+public class FishObstacle : BounceObstacle
 {
     private Rigidbody _rigidbody;
 
