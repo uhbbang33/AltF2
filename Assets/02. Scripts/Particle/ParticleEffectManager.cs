@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -31,6 +32,13 @@ public class ParticleEffectManager : MonoBehaviour
 
         particle.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
 
+        particle.Play();
+    }
+
+    public void Playfeather(Vector3 position)
+    {
+        ParticleSystem FeaterEffect = Resources.Load<ParticleSystem>("FeaterEffect");
+        ParticleSystem particle = Instantiate(FeaterEffect, position, Quaternion.identity);
         particle.Play();
     }
 
