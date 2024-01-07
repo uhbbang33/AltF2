@@ -35,11 +35,22 @@ public class ParticleEffectManager : MonoBehaviour
         particle.Play();
     }
 
-    public void Playfeather(Vector3 position)
+    public void Playfeather(GameObject chicken)
     {
-        ParticleSystem FeaterEffect = Resources.Load<ParticleSystem>("FeaterEffect");
-        ParticleSystem particle = Instantiate(FeaterEffect, position, Quaternion.identity);
-        particle.Play();
+        StartCoroutine(feather(chicken));
+    }
+
+    IEnumerator feather(GameObject chicken)
+    {
+        int count = 0;
+        while (count<=3) 
+        { 
+            ParticleSystem FeaterEffect = Resources.Load<ParticleSystem>("FeaterEffect");
+            ParticleSystem particle = Instantiate(FeaterEffect, chicken.transform.position, Quaternion.identity);
+            particle.Play();
+            yield return new WaitForSeconds(0.3f);
+            count++;
+        }
     }
 
     public void PlayFirstBloodParticle()

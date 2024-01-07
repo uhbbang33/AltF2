@@ -119,10 +119,10 @@ public class PlayerController : MonoBehaviour
             // АјАн
             _animator.SetTrigger("Attack");
             GameManager.Instance.AudioManager.SFXPlay(("Bird"), gameObject.transform.position, 0.1f);
-            ParticleEffectManager.Instance.Playfeather(gameObject.transform.position+Vector3.up*1);
             Rotate(GetCamDir());
-            Instantiate(chickenPrefab, chickenSpaawnPos.transform.position, Quaternion.identity);
-
+            GameObject chicken= Instantiate(chickenPrefab, chickenSpaawnPos.transform.position, Quaternion.identity);
+            ParticleEffectManager.Instance.Playfeather(chicken);
+            
             lastAttackTime = 0f;
         }
     }
