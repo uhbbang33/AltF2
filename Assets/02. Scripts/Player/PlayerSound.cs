@@ -26,7 +26,6 @@ public class PlayerSound : MonoBehaviour
     public void WalkSound()
     {
         _time += Time.deltaTime;
-        RaycastHit _hit;
         if (Mathf.Abs(_rigidbody.velocity.y)<0.1f&& Mathf.Abs(_rigidbody.velocity.magnitude)> 0.1f)
         {
             if (_playerController.IsGrounded())
