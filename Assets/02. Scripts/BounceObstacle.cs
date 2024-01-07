@@ -19,9 +19,6 @@ public class BounceObstacle : BaseObstacle
                 reflectDirection = new Vector3(reflectDirection.x, -reflectDirection.y, reflectDirection.z);
             //reflectDirection.y /= 100;
              
-            //Rigidbody playerRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-            //playerRigidbody.AddForce(reflectDirection * _bounceForce, ForceMode.VelocityChange);
-
             PlayerRagdollController ragdoll = collision.gameObject.GetComponent<PlayerRagdollController>();
             ragdoll.AddForceToPevis(reflectDirection * _bounceForce);
 
