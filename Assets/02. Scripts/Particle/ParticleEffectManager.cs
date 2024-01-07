@@ -43,7 +43,7 @@ public class ParticleEffectManager : MonoBehaviour
     IEnumerator feather(GameObject chicken)
     {
         int count = 0;
-        while (count<=3) 
+        while (count<=3&& chicken!=null) 
         { 
             ParticleSystem FeaterEffect = Resources.Load<ParticleSystem>("FeaterEffect");
             ParticleSystem particle = Instantiate(FeaterEffect, chicken.transform.position, Quaternion.identity);
