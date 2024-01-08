@@ -23,7 +23,9 @@ public class ChickenProjectile : MonoBehaviour
     private void Start()
     {
         _mainCameraTransform = Camera.main.transform;
+        ParticleEffectManager.Instance.Playfeather(gameObject);
         StartCoroutine(Fire());
+
     }
 
     IEnumerator Fire()
@@ -33,7 +35,7 @@ public class ChickenProjectile : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         Rotate(dir);
         _rigidbody.velocity = dir * speed;
-        StartCoroutine(DelayDestroy(destroyDelayTime));
+        Destroy(gameObject, destroyDelayTime);
     }
 
     private Vector3 GetCamDir()
@@ -50,16 +52,10 @@ public class ChickenProjectile : MonoBehaviour
         transform.rotation = rotation;
     }
 
-    IEnumerator DelayDestroy(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        Destroy(gameObject);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         // 충돌처리
-
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Balloon"))
+            Destroy(gameObject);
     }
 }

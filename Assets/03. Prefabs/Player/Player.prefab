@@ -630,7 +630,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &7710409270063542047
 MonoBehaviour:
@@ -1865,7 +1865,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 778420210389155972}
-  - component: {fileID: 6817565366889586283}
+  - component: {fileID: 296104727522550882}
   m_Layer: 0
   m_Name: Friction
   m_TagString: Untagged
@@ -1888,8 +1888,8 @@ Transform:
   m_Father: {fileID: 7989346948259855693}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6817565366889586283
-BoxCollider:
+--- !u!136 &296104727522550882
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1906,8 +1906,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.6, y: 1.5, z: 0.6}
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Height: 1.5
+  m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!1 &6789243956843647645
 GameObject:
