@@ -25,7 +25,14 @@ public class SceneLoadManager : MonoBehaviour
 
         _canvasGroup = LoadingCanvas.GetComponent<CanvasGroup>();
     }
+    //string으로 씬 불러오기
     public void ChangeScene(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        StartCoroutine(FillProgressBar(asyncLoad));
+    }
+    //int로 씬 불러오기
+    public void ChangeScene(int sceneName)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         StartCoroutine(FillProgressBar(asyncLoad));
