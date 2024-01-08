@@ -8,11 +8,14 @@ public class PlayerSound : MonoBehaviour
     private float _time;
     private float _delay =0.5f;
     private PlayerController _playerController;
-    
 
+    private Animator _animator;
+
+    
     private void Awake()
     {
-        _rigidbody=GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
+        _rigidbody =GetComponent<Rigidbody>();
         _playerController =GetComponent<PlayerController>();
     }
     private void Update()
@@ -28,7 +31,7 @@ public class PlayerSound : MonoBehaviour
         _time += Time.deltaTime;
         if (Mathf.Abs(_rigidbody.velocity.y)<0.1f&& Mathf.Abs(_rigidbody.velocity.magnitude)> 0.1f)
         {
-            if (_playerController.IsGrounded())
+            if (_playerController.IsGrounded()&& _animator.enabled)
             {
                 if (_time > _delay)
                 {

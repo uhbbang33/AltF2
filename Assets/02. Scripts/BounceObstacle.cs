@@ -11,7 +11,7 @@ public class BounceObstacle : BaseObstacle
     {
         base.OnCollisionEnter(collision);
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Vector3 collisionDirection = collision.contacts[0].point - collision.gameObject.transform.position;
             Vector3 reflectDirection = Vector3.Reflect(collisionDirection, collision.contacts[0].normal).normalized;

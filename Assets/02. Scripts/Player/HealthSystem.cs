@@ -22,22 +22,20 @@ public class HealthSystem : MonoBehaviour
     {
         Reset();
         _savePoint = GetComponent<SavePoint>();
-        _ragdollcollision = GetComponentInChildren<RagdollCollisionWithSea>();
     }
 
     private void Start()
     {
         _savePoint.OnRespawn += OnRespawned;
-        _ragdollcollision.OnDieInSea += Die;
-        OnDied += Reset;
     }
 
     public void Hit()
     {
         --_health;
         HitParticleEvent(_health);
+        Debug.Log(_health);
 
-        if(_health == 0)
+        if (_health == 0)
         {
             OnDied?.Invoke();
         }
@@ -55,6 +53,7 @@ public class HealthSystem : MonoBehaviour
     private void OnRespawned()
     {
         GameManager.UI.ClosePopupUI();
+        Reset();
         ResetParticle();
     }
 
@@ -67,16 +66,10 @@ public class HealthSystem : MonoBehaviour
     {
         if ((1 << other.gameObject.layer | deathLayer) == deathLayer)
         {
-            ParticleEffectManager.Instance.PlaySeaParticle(transform.position);
-            Die();
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if ((1 << collision.gameObject.layer | deathLayer) == deathLayer)
-        {
-            ParticleEffectManager.Instance.PlaySeaParticle(transform.position);
+            if (other.CompareTag("Sea"))
+                ParticleEffectManager.Instance.PlaySeaParticle(transform.position);
+            else
+                ParticleEffectManager.Instance.PlaySeaParticle(transform.position);
             Die();
         }
     }
@@ -85,13 +78,10 @@ public class HealthSystem : MonoBehaviour
     {
         if(_curHealth == 2)
         {
-            Debug.Log("HIT!");
-            //ParticleEffectManager.Instance.PlayFirstBloodParticle();
             ParticleEffectManager.Instance.PlayBloodParticle(firsHitBloodParticle);
         }
         else if(_curHealth == 1)
         {
-            //ParticleEffectManager.Instance.PlaySecondBloodParticle();
             ParticleEffectManager.Instance.PlayBloodParticle(secondHitBloodParticle);
         }
     }

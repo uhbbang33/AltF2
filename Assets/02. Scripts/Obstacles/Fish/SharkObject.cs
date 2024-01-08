@@ -28,7 +28,7 @@ public class SharkObject : BounceObstacle
     {
         base.OnCollisionEnter(collision);
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             //_player.GetComponent<PlayerRagdollController>()._pevisObject.transform.SetParent(transform);
             transform.SetParent(_player.GetComponent<PlayerRagdollController>()._pevisObject.transform);

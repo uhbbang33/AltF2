@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private bool _isGrounded;
     private bool _isElevator;
-    private bool _isAttack;
+    private bool _isAttack; 
     private bool _isRun;
     private float lastAttackTime = float.MaxValue;
     private Vector3 boxSize = new Vector3(0.6f, 0.1f, 0.6f);
@@ -119,8 +119,7 @@ public class PlayerController : MonoBehaviour
             _animator.SetTrigger("Attack");
             GameManager.Sound.SFXPlay(("Bird"), gameObject.transform.position, 0.1f);
             Rotate(GetCamDir());
-            GameObject chicken= Instantiate(chickenPrefab, chickenSpaawnPos.transform.position, Quaternion.identity);
-            ParticleEffectManager.Instance.Playfeather(chicken);
+            Instantiate(chickenPrefab, chickenSpaawnPos.transform.position, Quaternion.identity);
             
             lastAttackTime = 0f;
         }
