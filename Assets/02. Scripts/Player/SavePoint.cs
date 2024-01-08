@@ -50,12 +50,11 @@ public class SavePoint : MonoBehaviour
     {
         RaycastHit _hit;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out _hit, 1,4))
+        if (Physics.Raycast(transform.position, Vector3.down, out _hit))
         {
-            if (_hit.transform.CompareTag("SaveBoard"))
+            if (_hit.transform.gameObject.CompareTag("SaveBoard"))
             {
                 _savePoint = _hit.transform.position + Vector3.up;
-                //세이브 이펙트
                 Destroy(_hit.collider.gameObject, 1f);
             }
         }
