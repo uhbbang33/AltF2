@@ -12,9 +12,8 @@ public class JumpPad : MonoBehaviour
         if (otherRigidbody != null)
         {
             otherRigidbody.AddForce(forwardDirection * _jumpforce, ForceMode.Impulse);
-            GameManager.Instance.AudioManager.SFXPlay(("Pivot"), gameObject.transform.position, 0.1f);
-        }
-        
+            GameManager.Sound.SFXPlay(("Pivot"), gameObject.transform.position, 0.1f);
+        }        
     }
     
 }

@@ -21,7 +21,7 @@ public class PlayerSound : MonoBehaviour
     }
     public void LandingSound() 
     {
-        GameManager.Instance.AudioManager.SFXPlay(("landing"), gameObject.transform.position, 0.1f);
+        GameManager.Sound.SFXPlay(("landing"), gameObject.transform.position, 0.1f);
     }
     public void WalkSound()
     {
@@ -33,7 +33,7 @@ public class PlayerSound : MonoBehaviour
             {
                 if (_time > _delay)
                 {
-                    GameManager.Instance.AudioManager.SFXPlay(("Footstep"), gameObject.transform.position, 0.1f);
+                    GameManager.Sound.SFXPlay(("Footstep"), gameObject.transform.position, 0.1f);
                     _time = 0;
                 }
             }

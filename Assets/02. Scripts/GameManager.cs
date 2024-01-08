@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     private readonly UIManager _ui = new UIManager();
     public static UIManager UI => Instance._ui;
 
+    private readonly AudioManager _sound= new AudioManager();
+    public static AudioManager Sound => Instance._sound;
+
     private GameManager()
     {
 
@@ -43,13 +46,10 @@ public class GameManager : MonoBehaviour
     private UIScore _scoreUI;
     public bool IsPlayerDied { get; private set; } = true;
     private bool _isGameStarted = false;
-
-    public AudioManager AudioManager;
     public PlayerController Player { get; private set; }
 
     private void Awake()
     {
-        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         _ui.Init();
         FindScoreUI();
     }

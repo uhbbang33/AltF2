@@ -29,7 +29,7 @@ public class BaseObstacle : MonoBehaviour
 
             nameset();
 
-            GameManager.Instance.AudioManager.SFXPlay((name), gameObject.transform.position, 0.1f);
+            GameManager.Sound.SFXPlay((name), gameObject.transform.position, 0.1f);
         }
     }
 

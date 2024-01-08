@@ -3,28 +3,46 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager
 {
     private AudioClip _audioClip;
-    public AudioSource BgSound;
-    public AudioMixer Mixer;
+    private AudioSource _bgmSource;
+    private AudioMixer _audioMixer;
     private string _bgFilename;
 
     public Slider _bgmSlider;
     public Slider _sfxSlider;
     public Slider _masterSlider;
 
+    public GameObject Root
+    {
+        get
+        {
+            var root = GameObject.Find("@Sound_Root");
+            if (root == null)
+            {
+                root = new GameObject("@Sound_Root");
+                Object.DontDestroyOnLoad(root);
+            }
+            else
+            {
+                Object.DontDestroyOnLoad(root);
+            }
 
-    private void Awake()
-    {
-        _audioClip = GetComponent<AudioClip>();
-        DontDestroyOnLoad(this);
+            return root;
+        }
     }
-    private void Start()
+
+    public void Init()
     {
+        var go = new GameObject("@BGM");
+        _bgmSource = go.AddComponent<AudioSource>();
+        go.transform.parent = Root.transform;
+
         SceneManager.sceneLoaded += LoadedsceneEvent;
-        
         BgSoundPlay("BG1", 0.05f);
+
+
     }
 
     private void LoadedsceneEvent(Scene scene, LoadSceneMode arg1)
@@ -53,7 +71,7 @@ public class AudioManager : MonoBehaviour
             audiosource.volume = audioVolume;
             audiosource.Play();
 
-            Destroy(audiosource.gameObject, audiosource.clip.length);
+            Object.Destroy(audiosource.gameObject, audiosource.clip.length);
         }
         
     }
@@ -61,11 +79,11 @@ public class AudioManager : MonoBehaviour
     public void BgSoundPlay(string BgName, float audioVolume)
     {
         _audioClip = Resources.Load<AudioClip>("Audios/BGM/"+ BgName);
-        BgSound.clip = _audioClip;
-        BgSound.outputAudioMixerGroup = Mixer.FindMatchingGroups("BGSound")[0];
-        BgSound.loop = true;
-        BgSound.volume = audioVolume;
-        BgSound.Play();
+        _bgmSource.clip = _audioClip;
+        _bgmSource.outputAudioMixerGroup = Mixer.FindMatchingGroups("BGSound")[0];
+        _bgmSource.loop = true;
+        _bgmSource.volume = audioVolume;
+        _bgmSource.Play();
     }
 
     //º¼·ýÁ¶Àý
