@@ -35,35 +35,35 @@ public class UISetting : MonoBehaviour
         Slider slider;
         if (_soundSliders.TryGetValue(Sliders.Master.ToString(), out slider))
         {
-            // 기본으로 설정 되어있는 사운드 값 설정하기
+            slider.value = GameManager.Sound.MasterVolume;
             slider.onValueChanged.AddListener((x) => { OnMasterVolumeChanged(x);  });
         }
 
         if (_soundSliders.TryGetValue(Sliders.BGM.ToString(), out slider))
         {
-            // 기본으로 설정 되어있는 사운드 값 설정하기
+            slider.value = GameManager.Sound.BGMVolume;
             slider.onValueChanged.AddListener((x) => { OnBGMVolumeChanged(x); });
         }
 
         if (_soundSliders.TryGetValue(Sliders.SFX.ToString(), out slider))
         {
-            // 기본으로 설정 되어있는 사운드 값 설정하기
+            slider.value = GameManager.Sound.SFXVolume;
             slider.onValueChanged.AddListener((x) => { OnSFXVolumeChanged(x); });
         }        
     }
 
     private void OnMasterVolumeChanged(float volmue)
     {
-        // 사운드 관리하는 클래스에 값 전달하는 코드
+        GameManager.Sound.MasterVolume = volmue;
     }
 
     private void OnBGMVolumeChanged(float volmue)
     {
-        // 사운드 관리하는 클래스에 값 전달하는 코드
+        GameManager.Sound.BGMVolume = volmue;
     }
 
     private void OnSFXVolumeChanged(float volmue)
     {
-        // 사운드 관리하는 클래스에 값 전달하는 코드
+        GameManager.Sound.SFXVolume = volmue;
     }
 }

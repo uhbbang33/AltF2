@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _ui.Init();
         _sound.Init();
+        _ui.Init();        
         FindScoreUI();
     }
 
@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour
 
         if (hpSystem != null )
         {
-            //hpSystem.OnHit += 
             hpSystem.OnDied += OnPlayerDied;
         }
 

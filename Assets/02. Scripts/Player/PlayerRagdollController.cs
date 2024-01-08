@@ -58,12 +58,14 @@ public class PlayerRagdollController : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
         
+
         // IsPlayerDied == false?
         if (!GameManager.Instance.IsPlayerDied)
         {
             SetRagdollState(false);
-            ReturnPlayerPositionAndVelocity();
         }
+        ReturnPlayerPositionAndVelocity();
+
         _cameraRoot.transform.SetParent(transform, false);
         _co = null;
 
