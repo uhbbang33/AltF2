@@ -36,8 +36,9 @@ public class HealthSystem : MonoBehaviour
     {
         --_health;
         HitParticleEvent(_health);
+        Debug.Log(_health);
 
-        if(_health == 0)
+        if (_health == 0)
         {
             OnDied?.Invoke();
         }
@@ -85,7 +86,6 @@ public class HealthSystem : MonoBehaviour
     {
         if(_curHealth == 2)
         {
-            Debug.Log("HIT!");
             //ParticleEffectManager.Instance.PlayFirstBloodParticle();
             ParticleEffectManager.Instance.PlayBloodParticle(firsHitBloodParticle);
         }

@@ -19,6 +19,9 @@ public class BoxFooting : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(BoxMaintenanceTime());
+
+            var player = collision.gameObject;
+            player.GetComponent<HealthSystem>().OnDied += BoxReset;
         }    
     }
 
@@ -33,5 +36,10 @@ public class BoxFooting : MonoBehaviour
 
         gameObject.SetActive(false);
 
+    }
+
+    private void BoxReset()
+    {
+        gameObject.SetActive(true);
     }
 }

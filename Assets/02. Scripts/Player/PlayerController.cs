@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private bool _isGrounded;
     private bool _isElevator;
-    private bool _isAttack;
+    private bool _isAttack; 
     private bool _isRun;
     private float lastAttackTime = float.MaxValue;
     private Vector3 boxSize = new Vector3(0.6f, 0.1f, 0.6f);
