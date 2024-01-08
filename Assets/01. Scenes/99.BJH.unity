@@ -15392,12 +15392,12 @@ PrefabInstance:
         type: 3}
       propertyPath: firsHitBloodParticle
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2053895918}
     - target: {fileID: 8223741128804330279, guid: 9eed14f5b0f3bdd43bff9f634f0b943d,
         type: 3}
       propertyPath: secondHitBloodParticle
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1988179675}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17573,6 +17573,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3968ac19673e1dc42ad7a5306cd98bcb, type: 3}
+--- !u!1 &1988179675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7228673084355141433, guid: 9eed14f5b0f3bdd43bff9f634f0b943d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1445167201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2008357015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1888108453595392964, guid: 16782ab3f6c119143a92288a89ce6218,
@@ -17596,6 +17602,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 568653527279986074, guid: c65426a375c90574a95eaaf4840e9481,
     type: 3}
   m_PrefabInstance: {fileID: 563779597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2053895918 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7194064627402995826, guid: 9eed14f5b0f3bdd43bff9f634f0b943d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1445167201}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2060226214
 PrefabInstance:
