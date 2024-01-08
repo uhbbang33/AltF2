@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class DoorObjectInteraction : BaseObstacle
+public class DoorObjectInteraction : BounceObstacle
 {
     [Header("- Rot")]
     [SerializeField] private float rotX;
@@ -114,8 +114,8 @@ public class DoorObjectInteraction : BaseObstacle
         forceDirection.x = 0;
         forceDirection.z = zValue;
 
-        _rigidBody.AddForce(forceDirection.normalized * addForce, ForceMode.Impulse);
-        Debug.Log(forceDirection.normalized * addForce);
+        //_rigidBody.AddForce(forceDirection.normalized * addForce, ForceMode.Impulse);
+        //Debug.Log(forceDirection.normalized * addForce);
 
     }
 
