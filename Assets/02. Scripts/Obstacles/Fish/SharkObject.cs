@@ -8,7 +8,10 @@ public class SharkObject : BounceObstacle
     private Rigidbody _rigidbody;
     private GameObject _player;
     private Vector3 _forceDirection = new();
+    private Vector3 _originPos;
+    private Quaternion _originRot;
 
+    [SerializeField] GameObject _parent;
     [SerializeField] GameObject _targetPos;
     [SerializeField] float _jumpForce = 16f;
 
@@ -16,7 +19,8 @@ public class SharkObject : BounceObstacle
     {
         _rigidbody = GetComponent<Rigidbody>();
         _player = GameObject.FindWithTag("Player");
-
+        _originPos = transform.position;
+        _originRot = transform.rotation;
         JumpToPlayer();
     }
 
@@ -37,5 +41,15 @@ public class SharkObject : BounceObstacle
         _forceDirection = (_targetPos.transform.position - transform.position).normalized;
         _rigidbody.velocity = _forceDirection * 14f + Vector3.up * _jumpForce;
         //_rigidbody.AddForce(_forceDirection * 800f + Vector3.up * 600f);
+    }
+
+    public void SetShark()
+    {
+        transform.SetParent(_parent.transform);
+
+        transform.position = _originPos;
+        transform.rotation = _originRot;
+
+        gameObject.SetActive(false);
     }
 }

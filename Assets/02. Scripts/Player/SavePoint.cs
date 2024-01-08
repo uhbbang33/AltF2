@@ -72,7 +72,8 @@ public class SavePoint : MonoBehaviour
         SharkObject shark = GetComponentInChildren<SharkObject>();
         if (shark != null)
         {
-            Destroy(shark.gameObject);
+            shark.SetShark();
+            //Destroy(shark.gameObject);
         }
         gameObject.transform.position = _savePoint;
         _savePoint = _startPoint;
