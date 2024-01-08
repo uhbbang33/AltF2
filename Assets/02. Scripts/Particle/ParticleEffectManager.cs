@@ -7,9 +7,6 @@ using UnityEngine.UIElements;
 public class ParticleEffectManager : MonoBehaviour
 {
     public ParticleSystem waterParticle;
-    public GameObject firsHitBloodParticle;
-    public GameObject secondHitBloodParticle;
-
 
     public static ParticleEffectManager Instance;
 
@@ -53,23 +50,47 @@ public class ParticleEffectManager : MonoBehaviour
         }
     }
 
-    public void PlayFirstBloodParticle()
-    {
-        ParticleSystem[] particels = firsHitBloodParticle.GetComponentsInChildren<ParticleSystem>();
+    //public void PlayFirstBloodParticle()
+    //{
+    //    ParticleSystem[] particels = firsHitBloodParticle.GetComponentsInChildren<ParticleSystem>();
 
-        foreach(ParticleSystem particle in particels)
+    //    foreach(ParticleSystem particle in particels)
+    //    {
+    //        particle.Play();
+    //    }
+    //}
+
+    //public void PlaySecondBloodParticle()
+    //{
+    //    ParticleSystem[] particels = secondHitBloodParticle.GetComponentsInChildren<ParticleSystem>();
+
+    //    foreach (ParticleSystem particle in particels)
+    //    {
+    //        particle.Play();
+    //    }
+    //}
+
+    public void PlayBloodParticle(GameObject bloodParticle)
+    {
+        ParticleSystem[] particles = bloodParticle.GetComponentsInChildren<ParticleSystem>();
+
+        foreach (ParticleSystem particle in particles)
         {
             particle.Play();
         }
     }
 
-    public void PlaySecondBloodParticle()
+    // 파티클 리셋
+    public void ResetParticle(GameObject particleObject)
     {
-        ParticleSystem[] particels = secondHitBloodParticle.GetComponentsInChildren<ParticleSystem>();
-
-        foreach (ParticleSystem particle in particels)
+        if (particleObject != null)
         {
-            particle.Play();
+            ParticleSystem[] particles = particleObject.GetComponentsInChildren<ParticleSystem>();
+
+            foreach (ParticleSystem particle in particles)
+            {
+                particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); 
+            }
         }
     }
 

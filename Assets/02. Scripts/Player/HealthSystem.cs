@@ -14,6 +14,9 @@ public class HealthSystem : MonoBehaviour
     public event Action OnHit;
     public event Action OnDied;
 
+    public GameObject firsHitBloodParticle;
+    public GameObject secondHitBloodParticle;
+
     private void Awake()
     {
         Reset();
@@ -50,6 +53,7 @@ public class HealthSystem : MonoBehaviour
     private void OnRespawned()
     {
         GameManager.UI.ClosePopupUI();
+        ResetParticle();
     }
 
     private void Die()
@@ -80,12 +84,20 @@ public class HealthSystem : MonoBehaviour
     {
         if(_curHealth == 2)
         {
-            ParticleEffectManager.Instance.PlayFirstBloodParticle();
+            //ParticleEffectManager.Instance.PlayFirstBloodParticle();
+            ParticleEffectManager.Instance.PlayBloodParticle(firsHitBloodParticle);
         }
         else if(_curHealth == 1)
         {
-            ParticleEffectManager.Instance.PlaySecondBloodParticle();
+            //ParticleEffectManager.Instance.PlaySecondBloodParticle();
+            ParticleEffectManager.Instance.PlayBloodParticle(secondHitBloodParticle);
         }
-
     }
+
+    private void ResetParticle()
+    {
+        ParticleEffectManager.Instance.ResetParticle(firsHitBloodParticle);
+        ParticleEffectManager.Instance.ResetParticle(secondHitBloodParticle);
+    }
+
 }
