@@ -85,13 +85,21 @@ public class ParticleEffectManager : MonoBehaviour
     {
         if (particleObject != null)
         {
-            ParticleSystem[] particles = particleObject.GetComponentsInChildren<ParticleSystem>();
-
-            foreach (ParticleSystem particle in particles)
-            {
-                particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); 
-            }
+            StartCoroutine(StopParticleCoroutine(particleObject));
         }
+    }
+
+    private IEnumerator StopParticleCoroutine(GameObject particleObject)
+    {
+        ParticleSystem[] particles = particleObject.GetComponentsInChildren<ParticleSystem>();
+
+        foreach (ParticleSystem particle in particles)
+        {
+            particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+
+        yield return null;
+
     }
 
 }
