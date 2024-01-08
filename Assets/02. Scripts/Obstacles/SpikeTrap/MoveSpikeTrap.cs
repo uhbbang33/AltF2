@@ -19,7 +19,7 @@ public class MoveSpikeTrap : MonoBehaviour
     {
         _trapTime = false;
         yield return new WaitForSeconds(1f);
-        GMTest.Instance.audioManager.SFXPlay(("Spikes"), gameObject.transform.position, 0.1f);
+        GameManager.Instance.AudioManager.SFXPlay(("Spikes"), gameObject.transform.position, 0.1f);
         while (gameObject.transform.localPosition.y < 0.5f) 
         {
             gameObject.transform.position += Vector3.up * 0.01f;

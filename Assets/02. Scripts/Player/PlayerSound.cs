@@ -8,6 +8,7 @@ public class PlayerSound : MonoBehaviour
     private float _time;
     private float _delay =0.5f;
     private PlayerController _playerController;
+    
 
     private void Awake()
     {
@@ -20,7 +21,7 @@ public class PlayerSound : MonoBehaviour
     }
     public void LandingSound() 
     {
-        GMTest.Instance.audioManager.SFXPlay(("landing"), gameObject.transform.position, 0.1f);
+        GameManager.Instance.AudioManager.SFXPlay(("landing"), gameObject.transform.position, 0.1f);
     }
     public void WalkSound()
     {
@@ -32,7 +33,7 @@ public class PlayerSound : MonoBehaviour
             {
                 if (_time > _delay)
                 {
-                    GMTest.Instance.audioManager.SFXPlay(("Footstep"), gameObject.transform.position, 0.1f);
+                    GameManager.Instance.AudioManager.SFXPlay(("Footstep"), gameObject.transform.position, 0.1f);
                     _time = 0;
                 }
             }

@@ -44,10 +44,12 @@ public class GameManager : MonoBehaviour
     public bool IsPlayerDied { get; private set; } = true;
     private bool _isGameStarted = false;
 
+    public AudioManager AudioManager;
     public PlayerController Player { get; private set; }
 
     private void Awake()
     {
+        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         _ui.Init();
         FindScoreUI();
     }

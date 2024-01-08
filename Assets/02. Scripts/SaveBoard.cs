@@ -1,11 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveBoard : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-
 
     private void Awake()
     {

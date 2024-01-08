@@ -1,17 +1,18 @@
-using System.Xml.Linq;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     private AudioClip _audioClip;
     public AudioSource BgSound;
-    public AudioSource[] SFXSound;
     public AudioMixer Mixer;
     private string _bgFilename;
+
+    public Slider _bgmSlider;
+    public Slider _sfxSlider;
+    public Slider _masterSlider;
 
 
     private void Awake()
@@ -43,17 +44,19 @@ public class AudioManager : MonoBehaviour
     {
         GameObject AudioGo = new GameObject(sfxName + "Sound");
         AudioSource audiosource = AudioGo.AddComponent<AudioSource>();
+
         audiosource.outputAudioMixerGroup = Mixer.FindMatchingGroups("SFX")[0];
         _audioClip = Resources.Load<AudioClip>("Audios/SFX/"+sfxName);
-        audiosource.clip = _audioClip;
-        audiosource.volume = audioVolume;
-        audiosource.Play();
+        if (_audioClip!=null) 
+        {
+            audiosource.clip = _audioClip;
+            audiosource.volume = audioVolume;
+            audiosource.Play();
 
+            Destroy(audiosource.gameObject, audiosource.clip.length);
+        }
         
-        Destroy(audiosource.gameObject, audiosource.clip.length);
     }
-
-    //GMTest.Instance.audioManager.SFXPlay("die", AudioClip);
 
     public void BgSoundPlay(string BgName, float audioVolume)
     {
@@ -65,16 +68,20 @@ public class AudioManager : MonoBehaviour
         BgSound.Play();
     }
 
-    //GMTest.Instance.audioManager.BgSoundPlay(AudioClip);
-
-    //mix º¼·ý Á¶Àý
-/*    public void BGSoundVolume(float value) 
+    //º¼·ýÁ¶Àý
+    public void BGSoundVolume() 
     {
-        Mixer.SetFloat("BGSound", Mathf.Log10(value) * 20);
+        float bgmsound = _bgmSlider.value;
+        Mixer.SetFloat("BGVolume", bgmsound);
     }
-    public void SFXSoundVolume(float value)
+    public void SFXSoundVolume()
     {
-        Mixer.SetFloat("SFXVolume", Mathf.Log10(value) * 20);
-    }*/
-
+        float sfxsound = _sfxSlider.value;
+        Mixer.SetFloat("SFXVolume", sfxsound);
+    }
+    public void MasterVolume()
+    {
+        float mastersound = _masterSlider.value;
+        Mixer.SetFloat("Master", mastersound);
+    }
 }
