@@ -29,11 +29,13 @@ public class HealthSystem : MonoBehaviour
     {
         _savePoint.OnRespawn += OnRespawned;
         _ragdollcollision.OnDieInSea += Die;
+        OnDied += Reset;
     }
 
     public void Hit()
     {
-        --_health;        
+        --_health;
+        HitParticleEvent(_health);
 
         if(_health == 0)
         {
@@ -43,9 +45,6 @@ public class HealthSystem : MonoBehaviour
         {
             OnHit?.Invoke();
         }
-
-        HitParticleEvent(_health);
-
     }
 
     private void Reset()
@@ -61,7 +60,6 @@ public class HealthSystem : MonoBehaviour
 
     private void Die()
     {
-        _health = 0;
         OnDied?.Invoke();
     }
 
@@ -87,6 +85,7 @@ public class HealthSystem : MonoBehaviour
     {
         if(_curHealth == 2)
         {
+            Debug.Log("HIT!");
             //ParticleEffectManager.Instance.PlayFirstBloodParticle();
             ParticleEffectManager.Instance.PlayBloodParticle(firsHitBloodParticle);
         }

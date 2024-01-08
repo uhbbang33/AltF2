@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
 
     private bool _isGrounded;
     private bool _isElevator;
-    private bool _isSwing;
     private bool _isAttack;
     private bool _isRun;
     private float lastAttackTime = float.MaxValue;
@@ -244,11 +243,7 @@ public class PlayerController : MonoBehaviour
         Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset ,
             transform.position.z);
         _isElevator = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, out hit, Quaternion.identity, 
-            boxCastDistance + elevatorBoxCastDistanceModifier + 0.2f, LayerMask.GetMask("Elevator"),
-            QueryTriggerInteraction.Ignore);
-
-        _isSwing = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, out hit, Quaternion.identity,
-            boxCastDistance + elevatorBoxCastDistanceModifier + 0.2f, LayerMask.GetMask("Swing"),
+            boxCastDistance + elevatorBoxCastDistanceModifier + 0.2f, LayerMask.GetMask("Elevator", "Swing"),
             QueryTriggerInteraction.Ignore);
 
         if (_isElevator)
@@ -256,18 +251,6 @@ public class PlayerController : MonoBehaviour
             if (_rigidbody.velocity.y < 0f)
                 _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -.5f, _rigidbody.velocity.z);
             transform.parent = hit.transform;
-        }
-        else if(_isSwing)
-        {
-            if (_rigidbody.velocity.y < 0f)
-                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -.5f, _rigidbody.velocity.z);
-
-            // 흔들그네를 부모로 설정
-            transform.parent = hit.transform;
-
-            // 플레이어의 회전을 흔들그네의 회전에 맞추기
-            Vector3 newRotation = new Vector3(0f, hit.transform.eulerAngles.y, 0f); // 레이에 맞은 그네의 회전값 가져오기
-            transform.rotation = Quaternion.Euler(newRotation);
         }
         else
         {
