@@ -14,7 +14,6 @@ public class PlayerRagdollController : MonoBehaviour
     [SerializeField] private Collider[] _lagdollColliders;
 
     [SerializeField] public GameObject _pevisObject;
-    //[SerializeField] private Collider _friction;
     [SerializeField] private GameObject _cameraRoot;
 
     Coroutine _co;
@@ -35,7 +34,6 @@ public class PlayerRagdollController : MonoBehaviour
     public void SetRagdollState(bool state)
     {
         _playerCollider.enabled = !state;
-        //_friction.enabled = !state;
         _animator.enabled = !state;
 
         foreach (Rigidbody rb in _lagdollRigidbodies)

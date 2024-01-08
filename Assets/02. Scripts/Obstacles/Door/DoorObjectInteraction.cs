@@ -41,7 +41,7 @@ public class DoorObjectInteraction : BaseObstacle
     {
         base.OnCollisionEnter(collision);
 
-        if (collision.gameObject.CompareTag("Player")) //&& Quaternion.Equals(_gameObject.transform.rotation, _objectRotation)
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) //&& Quaternion.Equals(_gameObject.transform.rotation, _objectRotation)
         {
             float angleDifference = Quaternion.Angle(_gameObject.transform.rotation, _objectRotation);
 

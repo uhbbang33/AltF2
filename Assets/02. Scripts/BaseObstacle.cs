@@ -8,7 +8,7 @@ public class BaseObstacle : MonoBehaviour
 
     protected void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             // player damage
             var player = collision.gameObject;
