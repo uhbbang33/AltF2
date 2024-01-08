@@ -60,7 +60,16 @@ public class HealthSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(1 << other.gameObject.layer == deathLayer)
+        if ((1 << other.gameObject.layer | deathLayer) == deathLayer)
+        {
+            ParticleEffectManager.Instance.PlaySeaParticle(transform.position);
+            Die();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if ((1 << collision.gameObject.layer | deathLayer) == deathLayer)
         {
             ParticleEffectManager.Instance.PlaySeaParticle(transform.position);
             Die();

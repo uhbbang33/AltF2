@@ -16,11 +16,6 @@ public class FishObstacle : BounceObstacle
 
     private IObjectPool<FishObstacle> _managedPool;
 
-    private void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
     private void OnEnable()
     {
         _rigidbody = GetComponent<Rigidbody>();

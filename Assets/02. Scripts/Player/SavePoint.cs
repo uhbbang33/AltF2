@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,6 +39,7 @@ public class SavePoint : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R)) 
         {
+            _playerRagdollController.SetRagdollState(true);
             StartCoroutine(ReStartCo());
         }
         checkSaveBoard();
@@ -61,8 +63,18 @@ public class SavePoint : MonoBehaviour
     
     public IEnumerator ReStartCo()
     {
-        _playerRagdollController.SetRagdollState(true);
         yield return new WaitForSeconds(5.1f);
+
+        PlayerRagdollController playerRagdoll = GetComponent<PlayerRagdollController>();
+        playerRagdoll.SetRagdollState(false);
+        playerRagdoll.ReturnPlayerPositionAndVelocity();
+
+        SharkObject shark = GetComponentInChildren<SharkObject>();
+        if (shark != null)
+        {
+            Destroy(shark.gameObject);
+        }
+
         gameObject.transform.position = _savePoint;
         _savePoint = _startPoint;
         OnRespawn?.Invoke();

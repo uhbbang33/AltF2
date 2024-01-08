@@ -27,4 +27,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/01. Scenes/KDH_TestChange 1.unity
     guid: 3bbc68a290eb3fc46aef4f5498a7f3bf
+  - enabled: 1
+    path: Assets/01. Scenes/KDH_Obstacle.unity
+    guid: 23fe3b306590e014db1d790d336f6394
   m_configObjects: {}

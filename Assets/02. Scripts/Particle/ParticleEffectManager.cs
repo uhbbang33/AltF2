@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -32,6 +33,24 @@ public class ParticleEffectManager : MonoBehaviour
         particle.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
 
         particle.Play();
+    }
+
+    public void Playfeather(GameObject chicken)
+    {
+        StartCoroutine(feather(chicken));
+    }
+
+    IEnumerator feather(GameObject chicken)
+    {
+        int count = 0;
+        while (count<=3&& chicken!=null) 
+        { 
+            ParticleSystem FeaterEffect = Resources.Load<ParticleSystem>("FeaterEffect");
+            ParticleSystem particle = Instantiate(FeaterEffect, chicken.transform.position, Quaternion.identity);
+            particle.Play();
+            yield return new WaitForSeconds(0.3f);
+            count++;
+        }
     }
 
     public void PlayFirstBloodParticle()
