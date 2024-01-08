@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _ui.Init();
+        _sound.Init();
         FindScoreUI();
     }
 
@@ -92,11 +93,17 @@ public class GameManager : MonoBehaviour
     {
         Player = player;
         var hpSystem = Player.GetComponent<HealthSystem>();
+        var savePoint = Player.GetComponent<SavePoint>();
+
         if (hpSystem != null )
         {
             //hpSystem.OnHit += 
             hpSystem.OnDied += OnPlayerDied;
-            // Player 부활 이벤트 
+        }
+
+        if(savePoint != null)
+        {
+            savePoint.OnRespawn += (() => { IsPlayerDied = false; });
         }
     }
 

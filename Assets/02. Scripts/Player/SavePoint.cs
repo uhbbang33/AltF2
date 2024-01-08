@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,8 @@ public class SavePoint : MonoBehaviour
     private Vector3 _SecondStartPoint = new Vector3(94, 0, 15); // 2스테이지 시작위치 설정.
 
     private Vector3 _savePoint = Vector3.zero;  // 저장위치 설정.
+
+    public event Action OnRespawn;
 
     private HealthSystem HealthSystem;
     private PlayerRagdollController _playerRagdollController;
@@ -23,11 +26,11 @@ public class SavePoint : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         sceneCheck(scene);
         _savePoint = _startPoint;
-        HealthSystem.OnDied += revive;
+        HealthSystem.OnDied += Receive;
         //SceneManager.sceneLoaded += LoadedsceneEvent;
     }
 
-    public void revive() 
+    public void Receive() 
     {
         StartCoroutine(ReStartCo());
     }
@@ -40,13 +43,6 @@ public class SavePoint : MonoBehaviour
         checkSaveBoard();
         Debug.DrawRay(transform.position, Vector3.down, Color.red, 0.3f);
     }
-
-    /*private void LoadedsceneEvent(Scene scene, LoadSceneMode arg1)
-    {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        sceneCheck(scene);
-        _savePoint = _startPoint;
-    }*/
 
     private void checkSaveBoard() 
     {
@@ -69,6 +65,7 @@ public class SavePoint : MonoBehaviour
         yield return new WaitForSeconds(5.1f);
         gameObject.transform.position = _savePoint;
         _savePoint = _startPoint;
+        OnRespawn?.Invoke();
     }
 
     private void sceneCheck(Scene scene) 

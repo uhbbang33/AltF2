@@ -70,12 +70,6 @@ public class PlayerController : MonoBehaviour
         inputState = PlayerInputState.UnLocked;
     }
 
-    private void Update()
-    {
-        //CheckElevator();
-
-    }
-
     private void FixedUpdate()
     {
         Move();
@@ -92,8 +86,6 @@ public class PlayerController : MonoBehaviour
         Rotate(dir);
         var movementSpeed = _isRun ? runSpeed : moveSpeed;
         dir = dir * movementSpeed;
-        //dir.y = _rigidbody.velocity.y;
-        //_rigidbody.velocity = dir;
         _rigidbody.AddForce(dir);
 
     }
@@ -109,7 +101,6 @@ public class PlayerController : MonoBehaviour
         float timer = 0f;
         while (timer < RollAnimationtime)
         {
-            //_rigidbody.MovePosition(_rigidbody.position + dir * rollSpeed * Time.fixedDeltaTime);
             _rigidbody.AddForce(dir * rollSpeed, ForceMode.VelocityChange);
             timer += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
@@ -257,8 +248,8 @@ public class PlayerController : MonoBehaviour
 
         if (_isElevator)
         {
-            //if(_rigidbody.velocity.y < 0f)
-                //_rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -.5f, _rigidbody.velocity.z);
+            if (_rigidbody.velocity.y < 0f)
+                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -.5f, _rigidbody.velocity.z);
             transform.parent = hit.transform;
         }
         else

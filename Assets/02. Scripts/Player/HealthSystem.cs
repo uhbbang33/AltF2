@@ -9,17 +9,20 @@ public class HealthSystem : MonoBehaviour
     private int _health = 0;
     public LayerMask deathLayer;
 
+    private SavePoint _savePoint;
+
     public event Action OnHit;
     public event Action OnDied;
 
     private void Awake()
     {
         Reset();
+        _savePoint = GetComponent<SavePoint>();
     }
 
     private void Start()
     {
-        // Player On Respawned += Reset();
+        _savePoint.OnRespawn += OnRespawned;
     }
 
     public void Hit()
@@ -42,6 +45,11 @@ public class HealthSystem : MonoBehaviour
     private void Reset()
     {
         _health = _maxHeatlh;
+    }
+
+    private void OnRespawned()
+    {
+        GameManager.UI.ClosePopupUI();
     }
 
     private void Die()
