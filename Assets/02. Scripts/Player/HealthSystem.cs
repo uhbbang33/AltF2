@@ -10,6 +10,7 @@ public class HealthSystem : MonoBehaviour
     public LayerMask deathLayer;
 
     private SavePoint _savePoint;
+    private RagdollCollisionWithSea _ragdollcollision;
 
     public event Action OnHit;
     public event Action OnDied;
@@ -18,11 +19,13 @@ public class HealthSystem : MonoBehaviour
     {
         Reset();
         _savePoint = GetComponent<SavePoint>();
+        _ragdollcollision = GetComponentInChildren<RagdollCollisionWithSea>();
     }
 
     private void Start()
     {
         _savePoint.OnRespawn += OnRespawned;
+        _ragdollcollision.OnDieInSea += Die;
     }
 
     public void Hit()
