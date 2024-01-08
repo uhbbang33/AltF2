@@ -49,8 +49,8 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private Transform _mainCameraTransform;
 
-    private const float GroundedOffset = -0.17f;
-    private const float boxCastDistance = 0.2f;
+    private const float GroundedOffset = -0.5f;
+    private const float boxCastDistance = 0.53f;
     private const float elevatorBoxCastDistanceModifier = 0.2f;
     private const float RandBoxCastDistanceModifier = 1f;
     private const float RollAnimationtime = 1.1f;
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         if (dir == Vector3.zero) return;
         Rotate(dir);
         var movementSpeed = _isRun ? runSpeed : moveSpeed;
+        movementSpeed = IsGrounded() ? movementSpeed : runSpeed / 2;
         dir = dir * movementSpeed;
         _rigidbody.AddForce(dir);
 
@@ -105,7 +106,7 @@ public class PlayerController : MonoBehaviour
             timer += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-
+        yield return new WaitForSeconds(0.5f);
         Rotate(dir);
     }
 
@@ -135,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 GetMoveDir()
     {
-        if(_moveInput == Vector2.zero) return Vector3.zero;
+        if (_moveInput == Vector2.zero) return Vector3.zero;
 
         var fowardDir = _mainCameraTransform.forward;
         var rightDir = _mainCameraTransform.right;
@@ -162,12 +163,12 @@ public class PlayerController : MonoBehaviour
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         if (inputState == PlayerInputState.Locked) return;
-        if(context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed)
         {
             _moveInput = context.ReadValue<Vector2>();
             _animator.SetBool("Move", true);
         }
-        else if(context.phase == InputActionPhase.Canceled)
+        else if (context.phase == InputActionPhase.Canceled)
         {
             _moveInput = Vector2.zero;
             _animator.SetBool("Move", false);
@@ -194,7 +195,7 @@ public class PlayerController : MonoBehaviour
         {
             _isAttack = true;
         }
-        else if(context.phase == InputActionPhase.Canceled)
+        else if (context.phase == InputActionPhase.Canceled)
         {
             _isAttack = false;
         }
@@ -207,7 +208,7 @@ public class PlayerController : MonoBehaviour
         {
             _isRun = true;
         }
-        if(context.phase == InputActionPhase.Canceled)
+        if (context.phase == InputActionPhase.Canceled)
         {
             _isRun = false;
         }
@@ -218,7 +219,7 @@ public class PlayerController : MonoBehaviour
         if (inputState == PlayerInputState.Locked) return;
         if (context.phase == InputActionPhase.Started)
         {
-            if(IsGrounded())
+            if (IsGrounded())
             {
                 StartCoroutine(Roll());
             }
@@ -240,10 +241,10 @@ public class PlayerController : MonoBehaviour
     private void CheckElevator()
     {
         RaycastHit hit;
-        Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset ,
+        Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
             transform.position.z);
-        _isElevator = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, out hit, Quaternion.identity, 
-            boxCastDistance + elevatorBoxCastDistanceModifier + 0.2f, LayerMask.GetMask("Elevator", "Swing"),
+        _isElevator = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, out hit, Quaternion.identity,
+            boxCastDistance + elevatorBoxCastDistanceModifier, LayerMask.GetMask("Elevator", "Swing"),
             QueryTriggerInteraction.Ignore);
 
 
@@ -251,11 +252,11 @@ public class PlayerController : MonoBehaviour
         {
             if (_rigidbody.velocity.y < 0f)
                 _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -.5f, _rigidbody.velocity.z);
-            transform.parent = hit.transform;
+            transform.SetParent(hit.transform);
         }
         else
         {
-            transform.parent = null;
+            transform.SetParent(null);
         }
     }
 
@@ -263,7 +264,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
            transform.position.z);
-        bool isRand = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, Quaternion.identity, 
+        bool isRand = Physics.BoxCast(boxPosition, boxSize / 2, Vector3.down, Quaternion.identity,
             boxCastDistance + RandBoxCastDistanceModifier, GroundLayerMask,
             QueryTriggerInteraction.Ignore);
 
@@ -289,7 +290,7 @@ public class PlayerController : MonoBehaviour
         Vector3 boxPosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
             transform.position.z);
 
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.magenta;
         Gizmos.DrawRay(boxPosition, Vector3.down * boxCastDistance);
 
         Gizmos.color = Color.red;
