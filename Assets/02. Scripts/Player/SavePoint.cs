@@ -7,31 +7,31 @@ using UnityEngine.SceneManagement;
 public class SavePoint : MonoBehaviour
 {
     private Vector3 _startPoint; // 시작위치 설정.
-    private Vector3 _firstStartPoint = new Vector3(0,50,50); // 1스테이지 시작위치 설정.
-    private Vector3 _SecondStartPoint = new Vector3(94, 0, 15); // 2스테이지 시작위치 설정.
+    private Vector3 _firstStartPoint = new Vector3(0,51,31); // 1스테이지 시작위치 설정.
+    private Vector3 _SecondStartPoint = new Vector3(94, 1, 15); // 2스테이지 시작위치 설정.
 
     private Vector3 _savePoint = Vector3.zero;  // 저장위치 설정.
 
     public event Action OnRespawn;
 
-    private HealthSystem HealthSystem;
+    private HealthSystem _healthSystem;
     private PlayerRagdollController _playerRagdollController;
 
     private void Awake()
     {
         _playerRagdollController = GetComponent<PlayerRagdollController>();
-        HealthSystem = GetComponent<HealthSystem>();
+        _healthSystem = GetComponent<HealthSystem>();
     }
     private void Start()
     {
         Scene scene = SceneManager.GetActiveScene();
         sceneCheck(scene);
         _savePoint = _startPoint;
-        HealthSystem.OnDied += Receive;
+        _healthSystem.OnDied += Revive;
         //SceneManager.sceneLoaded += LoadedsceneEvent;
     }
 
-    public void Receive() 
+    public void Revive() 
     {
         StartCoroutine(ReStartCo());
     }
@@ -74,7 +74,6 @@ public class SavePoint : MonoBehaviour
         {
             Destroy(shark.gameObject);
         }
-
         gameObject.transform.position = _savePoint;
         _savePoint = _startPoint;
         OnRespawn?.Invoke();
@@ -82,7 +81,7 @@ public class SavePoint : MonoBehaviour
 
     private void sceneCheck(Scene scene) 
     {
-        if (scene.name == "KDH_Obstacle")
+        if (scene.name == "StageScene")
         {
             _startPoint = _firstStartPoint;
         }
