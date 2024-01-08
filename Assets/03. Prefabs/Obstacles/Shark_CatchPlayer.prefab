@@ -260,7 +260,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bounceForce: 100
+  _parent: {fileID: 6389276735120799}
   _targetPos: {fileID: 786510354700543349}
+  _jumpForce: 12
 --- !u!1 &8917435207120715236
 GameObject:
   m_ObjectHideFlags: 0
