@@ -10,6 +10,7 @@ public class SharkObject : BounceObstacle
     private Vector3 _forceDirection = new();
 
     [SerializeField] GameObject _targetPos;
+    [SerializeField] float _jumpForce = 16f;
 
     private void OnEnable()
     {
@@ -34,7 +35,7 @@ public class SharkObject : BounceObstacle
     private void JumpToPlayer()
     {
         _forceDirection = (_targetPos.transform.position - transform.position).normalized;
-        _rigidbody.velocity = _forceDirection * 14f + Vector3.up * 16f;
+        _rigidbody.velocity = _forceDirection * 14f + Vector3.up * _jumpForce;
         //_rigidbody.AddForce(_forceDirection * 800f + Vector3.up * 600f);
     }
 }
