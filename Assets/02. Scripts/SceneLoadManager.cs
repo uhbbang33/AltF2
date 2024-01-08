@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Threading.Tasks;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,9 +12,6 @@ public class SceneLoadManager : MonoBehaviour
 
     public static SceneLoadManager Instance;
 
-
-    //ÃßÈÄ ·Îµù ½ºÅ©¸° ÁøÀÔ, Á¾·á ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Ãß°¡µÈ´Ù¸é »ç¿ëÇÒ ¿¹Á¤
-    private LoadingState _loadingState = LoadingState.Wait;
     private CanvasGroup _canvasGroup;
 
     private void Awake()
@@ -31,20 +27,19 @@ public class SceneLoadManager : MonoBehaviour
     }
     public void ChangeScene(string sceneName)
     {
-        _loadingState = LoadingState.InProgress;
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         StartCoroutine(FillProgressBar(asyncLoad));
     }
 
     IEnumerator FillProgressBar(AsyncOperation asyncLoad)
     {
-        //·Îµù È­¸é ÃÊ±âÈ­
+        //ë¡œë”© í™”ë©´ ì´ˆê¸°í™”
         LoadProgressBar.fillAmount = 0;
 
         LoadingCanvas.SetActive(true);
         _canvasGroup.alpha = 1.0f;
 
-        //FillAmount
+        //ê²Œì´ì§€ FillAmount
         while (LoadProgressBar.fillAmount <= 1)
         {
             LoadProgressBar.fillAmount = asyncLoad.progress;

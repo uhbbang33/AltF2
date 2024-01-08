@@ -14,11 +14,3 @@ public enum PlayerInputState
     Locked,
     UnLocked,
 }
-
-
-enum LoadingState
-{
-    Wait,
-    InProgress,
-    Done
-}
