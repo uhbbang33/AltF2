@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneLoadManager.Instance.ChangeScene(1);
         _isGameStarted = true;
     }
 
