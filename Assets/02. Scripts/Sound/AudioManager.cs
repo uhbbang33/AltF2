@@ -10,6 +10,43 @@ public class AudioManager
     private AudioMixer _audioMixer;
     private string _bgFilename;
 
+    public float MasterVolume
+    {
+        get
+        {
+            _audioMixer.GetFloat("Master", out float volume);
+            return volume;
+        }
+        set
+        {
+            _audioMixer.SetFloat("Master", value);
+        }
+    }
+    public float BGMVolume
+    {
+        get
+        {
+            _audioMixer.GetFloat("BGM", out float volume);
+            return volume;
+        }
+        set
+        {
+            _audioMixer.SetFloat("BGM", value);
+        }
+    }
+    public float SFXVolume
+    {
+        get
+        {
+            _audioMixer.GetFloat("SFX", out float volume);
+            return volume;
+        }
+        set
+        {
+            _audioMixer.SetFloat("SFX", value);
+        }
+    }
+
     public GameObject Root
     {
         get
@@ -43,11 +80,11 @@ public class AudioManager
 
     private void LoadedsceneEvent(Scene scene, LoadSceneMode arg1)
     {
-        if (scene.name == "KDH_Obstacle")
+        if (scene.buildIndex == 1)
         {
             _bgFilename = "BG1";
         }
-        else if (scene.name == "99.BJH")
+        else if (scene.buildIndex == 2)
         {
             _bgFilename = "BG3";
         }
@@ -64,7 +101,6 @@ public class AudioManager
         if (_audioClip!=null) 
         {
             audiosource.clip = _audioClip;
-            audiosource.volume = audioVolume;
             audiosource.Play();
 
             Object.Destroy(audiosource.gameObject, audiosource.clip.length);
@@ -73,29 +109,10 @@ public class AudioManager
 
     public void BgSoundPlay(string BgName, float audioVolume)
     {
-        _audioClip = Resources.Load<AudioClip>("Audios/BGM/"+ BgName);
-        _bgmSource.clip = _audioClip;
         _bgmSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups("BGM")[0];
+        _audioClip = Resources.Load<AudioClip>("Audios/BGM/"+ BgName);
+        _bgmSource.clip = _audioClip;        
         _bgmSource.loop = true;
-        _bgmSource.volume = audioVolume;
         _bgmSource.Play();
-    }
-
-    //º¼·ýÁ¶Àý
-    public void BGSoundVolume() 
-    {
-        //float bgmsound = _bgmSlider.value;
-        //_audioMixer.SetFloat("BGM", bgmsound);
-        // _audioMixer.GetFloat("BGM", out float value);
-    }
-    public void SFXSoundVolume()
-    {
-        //float sfxsound = _sfxSlider.value;
-        //_audioMixer.SetFloat("SFXVolume", sfxsound);
-    }
-    public void MasterVolume()
-    {
-        //float mastersound = _masterSlider.value;
-        //_audioMixer.SetFloat("Master", mastersound);
     }
 }
