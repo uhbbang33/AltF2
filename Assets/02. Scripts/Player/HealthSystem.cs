@@ -22,11 +22,13 @@ public class HealthSystem : MonoBehaviour
     {
         Reset();
         _savePoint = GetComponent<SavePoint>();
+        _ragdollcollision = GetComponentInChildren<RagdollCollisionWithSea>();
     }
 
     private void Start()
     {
         _savePoint.OnRespawn += OnRespawned;
+        _ragdollcollision.OnDieInSea += Die;
     }
 
     public void Hit()
