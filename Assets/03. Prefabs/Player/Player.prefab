@@ -835,7 +835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathLayer:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 1040
 --- !u!114 &5466668579447116520
 MonoBehaviour:
   m_ObjectHideFlags: 0
