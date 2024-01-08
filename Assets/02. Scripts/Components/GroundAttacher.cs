@@ -4,18 +4,40 @@ using UnityEngine;
 
 public class GroundAttacher : MonoBehaviour
 {
+    public LayerMask FootHold;
+    public Transform footHold;
+    public Vector3 landPosition;
+    public Vector3 offset;
+    private Rigidbody Rigidbody;
+
+    private void Awake()
+    {
+        Rigidbody = GetComponent<Rigidbody>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        transform.parent = collision.transform;// (collision.transform, false);
+        Debug.Log("D");
+        if(1 << collision.gameObject.layer == FootHold && footHold == null)
+        {
+            landPosition = transform.position;
+            footHold = collision.gameObject.transform;
+            Rigidbody.useGravity = false;
+            Rigidbody.velocity = Vector3.zero;            
+            offset = landPosition - footHold.position;
+        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        transform.parent = null;
+        
     }
 
     private void Update()
     {
-        // Debug.Log($"Velocity {GetComponent<Rigidbody>().velocity}");
+        if (footHold)
+        {
+            transform.position = footHold.position + offset;
+        }
     }
 }

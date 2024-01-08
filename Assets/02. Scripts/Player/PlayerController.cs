@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        CheckElevator();
+        //CheckElevator();
 
     }
 
@@ -80,13 +80,14 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Attack();
-        //CheckElevator();
+        CheckElevator();
         CheckAirAndGroundAnimation();
     }
 
     private void Move()
     {
         Vector3 dir = GetMoveDir();
+        
         if (dir == Vector3.zero) return;
         Rotate(dir);
         var movementSpeed = _isRun ? runSpeed : moveSpeed;
@@ -133,7 +134,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-private void Rotate(Vector3 dir)
+    private void Rotate(Vector3 dir)
     {
         if (dir == Vector3.zero) return;
         Quaternion rotation = Quaternion.LookRotation(dir);
@@ -256,8 +257,8 @@ private void Rotate(Vector3 dir)
 
         if (_isElevator)
         {
-            if(_rigidbody.velocity.y < 0f)
-                _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -.5f, _rigidbody.velocity.z);
+            //if(_rigidbody.velocity.y < 0f)
+                //_rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -.5f, _rigidbody.velocity.z);
             transform.parent = hit.transform;
         }
         else
