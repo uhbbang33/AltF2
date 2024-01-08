@@ -4,9 +4,15 @@ public class GuillotineEventHandler : BaseObstacle
 {
     public float Delay;
     public GameObject guillotineBlade;
+    private BladeController _controller;
 
     [HideInInspector]
     public bool _triggerInPlayer { get; private set; }
+
+    private void Awake()
+    {
+        _controller = guillotineBlade.GetComponent<BladeController>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -18,7 +24,7 @@ public class GuillotineEventHandler : BaseObstacle
         if (other.CompareTag("Player"))
         {
             _triggerInPlayer = true;
-            guillotineBlade.GetComponent<BladeController>().RoutineTrap();
+            _controller.RoutineTrap();
         }
     }
 
