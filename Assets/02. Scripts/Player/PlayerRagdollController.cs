@@ -14,7 +14,7 @@ public class PlayerRagdollController : MonoBehaviour
     [SerializeField] private Collider[] _lagdollColliders;
     [SerializeField] public GameObject _pevisObject;
     [SerializeField] private GameObject _cameraRoot;
-    [SerializeField] private Collider _frictionCol;
+    [SerializeField] private GameObject _friction;
 
     Coroutine _co;
 
@@ -34,7 +34,7 @@ public class PlayerRagdollController : MonoBehaviour
     public void SetRagdollState(bool state)
     {
         _playerCollider.enabled = !state;
-        _frictionCol.enabled = !state;
+        _friction.SetActive(!state);
         _animator.enabled = !state;
 
         foreach (Rigidbody rb in _lagdollRigidbodies)
@@ -58,9 +58,7 @@ public class PlayerRagdollController : MonoBehaviour
         _playerController.InputActionLocked();
 
         yield return new WaitForSeconds(5f);
-        
 
-        // IsPlayerDied == false?
         if (!GameManager.Instance.IsPlayerDied)
         {
             SetRagdollState(false);
@@ -79,7 +77,6 @@ public class PlayerRagdollController : MonoBehaviour
         transform.position = _pevisObject.transform.position + Vector3.up;
     }
 
-    // ?
     private void SetRagdollStateTrue()
     {
         SetRagdollState(true);

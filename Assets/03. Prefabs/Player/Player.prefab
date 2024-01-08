@@ -810,7 +810,7 @@ MonoBehaviour:
   - {fileID: 6585397445858151618}
   _pevisObject: {fileID: 6993075157754985873}
   _cameraRoot: {fileID: 2211663160338562641}
-  _frictionCol: {fileID: 296104727522550882}
+  _friction: {fileID: 6655267846495138981}
 --- !u!114 &3687140837709891160
 MonoBehaviour:
   m_ObjectHideFlags: 0
