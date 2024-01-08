@@ -247,7 +247,6 @@ public class PlayerController : MonoBehaviour
             boxCastDistance + elevatorBoxCastDistanceModifier, LayerMask.GetMask("Elevator", "Swing"),
             QueryTriggerInteraction.Ignore);
 
-
         if (_isElevator)
         {
             if (_rigidbody.velocity.y < 0f)

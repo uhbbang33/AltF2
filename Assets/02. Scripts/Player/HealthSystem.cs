@@ -15,6 +15,9 @@ public class HealthSystem : MonoBehaviour
     public event Action OnHit;
     public event Action OnDied;
 
+    public GameObject firsHitBloodParticle;
+    public GameObject secondHitBloodParticle;
+
     private void Awake()
     {
         Reset();
@@ -26,11 +29,13 @@ public class HealthSystem : MonoBehaviour
     {
         _savePoint.OnRespawn += OnRespawned;
         _ragdollcollision.OnDieInSea += Die;
+        OnDied += Reset;
     }
 
     public void Hit()
     {
-        --_health;        
+        --_health;
+        HitParticleEvent(_health);
 
         if(_health == 0)
         {
@@ -40,9 +45,6 @@ public class HealthSystem : MonoBehaviour
         {
             OnHit?.Invoke();
         }
-
-        HitParticleEvent(_health);
-
     }
 
     private void Reset()
@@ -53,11 +55,11 @@ public class HealthSystem : MonoBehaviour
     private void OnRespawned()
     {
         GameManager.UI.ClosePopupUI();
+        ResetParticle();
     }
 
     private void Die()
     {
-        _health = 0;
         OnDied?.Invoke();
     }
 
@@ -83,12 +85,21 @@ public class HealthSystem : MonoBehaviour
     {
         if(_curHealth == 2)
         {
-            ParticleEffectManager.Instance.PlayFirstBloodParticle();
+            Debug.Log("HIT!");
+            //ParticleEffectManager.Instance.PlayFirstBloodParticle();
+            ParticleEffectManager.Instance.PlayBloodParticle(firsHitBloodParticle);
         }
         else if(_curHealth == 1)
         {
-            ParticleEffectManager.Instance.PlaySecondBloodParticle();
+            //ParticleEffectManager.Instance.PlaySecondBloodParticle();
+            ParticleEffectManager.Instance.PlayBloodParticle(secondHitBloodParticle);
         }
-
     }
+
+    private void ResetParticle()
+    {
+        ParticleEffectManager.Instance.ResetParticle(firsHitBloodParticle);
+        ParticleEffectManager.Instance.ResetParticle(secondHitBloodParticle);
+    }
+
 }
