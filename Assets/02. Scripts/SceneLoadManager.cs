@@ -16,12 +16,15 @@ public class SceneLoadManager : MonoBehaviour
 
     private void Awake()
     {
-        if (FindObjectsOfType<SceneLoadManager>().Length >= 2)
+        if (FindObjectsOfType<SceneLoadManager>().Length  >= 2)
         {
             Destroy(gameObject);
         }
-        Instance = FindObjectOfType<SceneLoadManager>();
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            Instance = FindObjectOfType<SceneLoadManager>();
+            DontDestroyOnLoad(gameObject);
+        }
 
         _canvasGroup = LoadingCanvas.GetComponent<CanvasGroup>();
     }
