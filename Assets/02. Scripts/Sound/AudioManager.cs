@@ -10,9 +10,7 @@ public class AudioManager : MonoBehaviour
     public AudioMixer Mixer;
     private string _bgFilename;
 
-    public Slider _bgmSlider;
-    public Slider _sfxSlider;
-    public Slider _masterSlider;
+    private float _soundValue;
 
 
     private void Awake()
@@ -37,7 +35,7 @@ public class AudioManager : MonoBehaviour
         {
             _bgFilename = "BG3";
         }
-        BgSoundPlay(_bgFilename, 0.05f);
+        BgSoundPlay(_bgFilename, 0.1f);
     }
 
     public void SFXPlay(string sfxName, Vector3 audioPosition, float audioVolume)
@@ -69,19 +67,20 @@ public class AudioManager : MonoBehaviour
     }
 
     //º¼·ýÁ¶Àý
-    public void BGSoundVolume() 
+    public void BGSoundVolume(Slider _bgmSlider) 
     {
-        float bgmsound = _bgmSlider.value;
-        Mixer.SetFloat("BGVolume", bgmsound);
+
+        _soundValue = _bgmSlider.value;
+        Mixer.SetFloat("BGVolume", _soundValue);
     }
-    public void SFXSoundVolume()
+    public void SFXSoundVolume(Slider _sfxSlider)
     {
-        float sfxsound = _sfxSlider.value;
-        Mixer.SetFloat("SFXVolume", sfxsound);
+        _soundValue = _sfxSlider.value;
+        Mixer.SetFloat("SFXVolume", _soundValue);
     }
-    public void MasterVolume()
+    public void MasterVolume(Slider _masterSlider)
     {
-        float mastersound = _masterSlider.value;
-        Mixer.SetFloat("Master", mastersound);
+        _soundValue = _masterSlider.value;
+        Mixer.SetFloat("Master", _soundValue);
     }
 }

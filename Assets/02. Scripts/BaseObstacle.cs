@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BaseObstacle : MonoBehaviour
 {
-    string name = "";
+
+    private float _hitCount = 0;
+    private string _soundName = "";
 
     protected void OnCollisionEnter(Collision collision)
     {
@@ -20,16 +22,16 @@ public class BaseObstacle : MonoBehaviour
 
             nameset();
 
-            GameManager.Instance.AudioManager.SFXPlay((name), gameObject.transform.position, 0.1f);
+            GameManager.Instance.AudioManager.SFXPlay((_soundName), gameObject.transform.position, 0.1f);
         }
     }
 
     private void nameset() 
     {
-        name = gameObject.name.Replace("(Clone)", "");
+        _soundName = gameObject.name.Replace("(Clone)", "");
         for (int i = 0; i < 20; i++)
         {
-            name = name.Replace(" (" + i + ")", "");
+            _soundName = _soundName.Replace(" (" + i + ")", "");
         }
     }
 }
